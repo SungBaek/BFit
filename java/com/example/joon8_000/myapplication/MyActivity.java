@@ -1,5 +1,6 @@
 package com.example.joon8_000.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,8 +11,12 @@ import android.widget.EditText;
 
 
 
-public class MyActivity extends ActionBarActivity {
+public class MyActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+    public void FunctionName(View view) {
+
+    }
+
     public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
@@ -23,7 +28,7 @@ public class MyActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.activity_creation_profile_user);
     }
 
     @Override

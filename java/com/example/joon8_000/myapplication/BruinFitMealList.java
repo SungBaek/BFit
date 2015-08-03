@@ -1,6 +1,7 @@
 package com.example.joon8_000.myapplication;
 
-import org.json.JSONArray;
+import com.example.joon8_000.myapplication.User.UserProfile;
+
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ TODO: FINISH HASHMAP IMPLEMENTATION
  */
 public class BruinFitMealList implements MealList{
     protected int size;
-    protected HashMap<String, Meal> meals;
+    protected List<Meal> meals;
 
     public BruinFitMealList(JSONObject parsed_meals)
     {
@@ -40,10 +41,10 @@ public class BruinFitMealList implements MealList{
     public int eatThis(Meal eatenMeal)
     {
         //do more effecitve implemntation later
-        if (meals.containsKey(eatenMeal.getName() ))
-        {
-            meals.get(eatenMeal.getName() ).eatThis();
-        }
+       // if (meals.containsKey(eatenMeal.getName() ))
+     //   {
+     //       meals.get(eatenMeal.getName() ).eatThis();
+     //   }
 
         //error
         return -1;

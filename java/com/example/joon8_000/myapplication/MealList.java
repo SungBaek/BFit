@@ -1,6 +1,6 @@
 package com.example.joon8_000.myapplication;
 
-import org.json.JSONObject;
+import com.example.joon8_000.myapplication.User.UserProfile;
 
 import java.util.List;
 

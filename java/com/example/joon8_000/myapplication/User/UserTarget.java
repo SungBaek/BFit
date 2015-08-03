@@ -1,4 +1,4 @@
-package com.example.joon8_000.myapplication;
+package com.example.joon8_000.myapplication.User;
 
 /**
  * Created by joon8_000 on 7/24/2015.
@@ -21,7 +21,4 @@ public class UserTarget {
         protein = i_protein;
     }
 
-    public int dog(){
-        ;
-    }
 }

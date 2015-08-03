@@ -1,4 +1,4 @@
-package com.example.joon8_000.myapplication;
+package com.example.joon8_000.myapplication.User;
 
 /**
  * Created by joon8_000 on 7/23/2015.
@@ -50,8 +50,8 @@ public class UserProfile {
     //TODO : return breakfast, lunch, dinner, dailytotal, lifetotal stuff.
     public int getMaxFat() {return breakfast.fat;}
     public int getMaxCalorie() {return dailyTotal.fat; }
-    public int getEatenFat() {return eatenFat; }
-    public int getEatenCalorie() {return getEatenCalorie;}
+    public int getEatenFat() {return 0; }
+    public int getEatenCalorie() {return 0;}
     public int getBMI() {return BMI; }
 
     public UserProfile(int gender, int weight, int height,int goal){
