@@ -19,7 +19,7 @@
         <activity
             android:name=".User.UserProfileCreationEchoActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName=".User.UserProfileCreationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.joon8_000.myapplication.User.UserProfileCreationActivity" />

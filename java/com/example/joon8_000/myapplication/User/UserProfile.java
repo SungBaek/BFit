@@ -1,5 +1,7 @@
 package com.example.joon8_000.myapplication.User;
 
+import com.example.joon8_000.myapplication.MealList.MealList;
+
 /**
  * Created by joon8_000 on 7/23/2015.
  */
@@ -31,7 +33,7 @@ public class UserProfile {
     protected int goal;
     protected int BMI;
 
-
+    private MealList mealList;
 
     //calculates initial targets
     public int calculateTarget() {
