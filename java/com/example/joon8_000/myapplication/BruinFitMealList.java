@@ -14,7 +14,7 @@ import java.util.List;
 /*
 TODO: FINISH HASHMAP IMPLEMENTATION
     FINISH CALCULATION WITH HIGHLIGHTS
-
+    I like turtles
  */
 public class BruinFitMealList implements MealList{
     protected int size;
