@@ -19,10 +19,10 @@ public class Meal {
     }
     public void eatThis(){ numberEaten++; }
     public String getName() { return mealName; }
-    public int getFat() { return 0; }
-    public int getCalorie() {return 0; }
+    public int getFat() { return nutrients.totalFat; }
+    public int getCalorie() {return nutrients.calorie; }
     public int getCount() { return numberEaten; }
-
+    public void setCanEat(boolean canEat) { this.canEat= canEat; }
 
 
 }

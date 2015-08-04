@@ -24,6 +24,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.joon8_000.myapplication.User.UserProfileCreationActivity" />
         </activity>
+        <activity
+            android:name=".User.HomePageActivity"
+            android:label="@string/title_activity_home_page" >
+        </activity>
     </application>
 
 </manifest>
