@@ -13,9 +13,16 @@ public class UserProfile {
     public static final int MALE = 0;
     public static final int FEMALE = 1;
     //If the user wants to gain, stay, or lose
-    public static final int GAIN = 10;
+    public static final int GAIN = 10;      // a lb a week
     public static final int STAY = 11;
-    public static final int LOSE = 12;
+    public static final int LOSE = 12;      // a lb a week
+
+    //Lifestyle
+    public static final int SEDENTARY = 15;     // little to no exercise a week
+    public static final int LIGHT = 16;         // 1-3 days of exercise a week
+    public static final int MODERATE = 17;      // 3-5 days of exercise a week
+    public static final int ACTIVE = 18;        // 6-7 days of exercise a week
+    public static final int EXTRA_ACTIVE = 19;  // very intensive/twice a day of strenuous exercise
 
     public static final int BREAKFAST = 20;
     public static final int LUNCH = 21;
@@ -23,74 +30,163 @@ public class UserProfile {
     public static final int TOTAL = 23;
     public static final int DAILY = 24;
 
-    protected Nutrients brkTarget;
-    protected Nutrients lunchTarget;
-    protected Nutrients dinnerTarget;
-    protected Nutrients dailyTarget;
+    // weight-height measurement
+    public static final int METRIC = 30;
+    public static final int IMPERIAL = 31; // default system
 
-    protected Nutrients lifeTotal;
+    public static final double BREAKFAST_PERCENT = 0.20;
+    public static final double LUNCH_PERCENT = 0.40;
+    public static final double DINNER_PERCENT = 0.40;
+
+    private Nutrients brkTarget;
+    private Nutrients lunchTarget;
+    private Nutrients dinnerTarget;
+    private Nutrients dailyTarget;
+
+    private Nutrients lifeTotal;
     /*user input variables
-    BMI, GENDER, ETC.
+    BMR, GENDER, ETC.
     */
     private String firstName;
     private String lastName;
 
-    protected int gender;
-    protected int weight;
-    protected int height;
-    protected int BMI;
-    protected int goal;
+    private int gender;
+    private int age;
+    private int weight;
+    private int height;
+    private double BMR;   // basal metabolic rate
+    private int exercise;
+    private int goal;
+    private int measurementSyst;
+    private boolean eatBreakfast;
 
     private MealList mealList;
 
     //constructor
-    public UserProfile(int gender, int weight, int height,String firstName, String lastName){
-        if (gender != MALE && gender != FEMALE)
-            ; //error so probably throw exception here.
+    public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
         this.gender = gender;
+        this.age = age;
         this.weight = weight;
         this.height = height;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.exercise = exercise;
+        this.goal = goal;
+        this.eatBreakfast = eatBreakfast;
+        this.measurementSyst = measurementSyst;
+
     }
 
-    //BMIcalculator, calculates BMI using weight and height.
-    public int calcBMI(int weight, int height){
-        this.BMI = 10;
-        //TODO: IMPLEMENT THIS
-        return 0; //so it compiles.
+    //BMRcalculator, calculates BMR using Harris-Benedict Equation
+    public void calcBMR(){
+        if (measurementSyst == METRIC)
+        {
+            if (gender == MALE)
+                BMR = 88.362 + ((double)weight * 13.397) + ((double)height * 4.799) - ((double)age * 5.677);
+            else
+                BMR = 447.593 + ((double)weight * 9.247) + ((double)height * 3.098) - ((double)age * 4.330);
+        }
+        else // default to IMPERIAL
+        {
+            if (gender == MALE)
+                BMR = 88.362 + (((double)weight*0.454) * 13.397) + (((double)height*2.54) * 4.799) - ((double)age * 5.677);
+            else
+                BMR = 447.593 + (((double)weight*0.454) * 9.247) + (((double)height*2.54) * 3.098) - ((double)age * 4.330);
+        }
     }
 
-    //calculates initial targets
-    //depending on if the user wants to gain lose or stay set 4 targets
+    //Depending on if the user wants to gain, lose or stay set 4 targets
     //brkTarget, lunchTarget, dinnerTarget, dailyTarget
     public int calculateTarget() {
-        if(goal == GAIN){
-            //do calculation here
+        if (calculateDaily() == -1)
+            return -1;
+        if (eatBreakfast) {
+            setMealsTarget(brkTarget, BREAKFAST_PERCENT);
+            setMealsTarget(lunchTarget, LUNCH_PERCENT);
+            setMealsTarget(dinnerTarget, DINNER_PERCENT);
         }
-        else if(goal == LOSE){
-            //do calculation here
-        }
-        else if(goal == STAY){
-            //do calculatiion here
+        else
+        {
+            setMealsTarget(brkTarget, 0);
+            setMealsTarget(lunchTarget, 0.50);
+            setMealsTarget(dinnerTarget, 0.50);
         }
 
-        return -1 ; //so it compiles
+        return 0;
+
     }
+    public int calculateDaily(){
+        int base = 0;
+        if (exercise == SEDENTARY)
+            base = (int)Math.round(BMR * 1.2);
+        else if (exercise == LIGHT)
+            base = (int)Math.round(BMR * 1.375);
+        else if (exercise == MODERATE)
+            base = (int)Math.round(BMR * 1.55);
+        else if (exercise == ACTIVE)
+            base = (int)Math.round(BMR * 1.725);
+        else if (exercise == EXTRA_ACTIVE)
+            base = (int)Math.round(BMR * 1.9);
+        else
+            return -1;
+
+        if (goal == LOSE)
+            dailyTarget.calorie = base - 500; // must burn extra 3500 calories a week
+        else if (goal == GAIN)
+            dailyTarget.calorie = base + 500; // must eat extra 3500 calories a week
+        else if (goal == STAY)
+            dailyTarget.calorie = base;
+        else
+            return -1;
+
+        dailyTarget.totalFat = (int)Math.round(((double)dailyTarget.calorie * 0.275)/9);        // recommended
+        dailyTarget.saturatedFat = (int)(Math.round(((double)dailyTarget.calorie * 0.10)/9));   // max
+        dailyTarget.transFat = 1;                                                               // max
+        dailyTarget.cholesterol = 300;                                                          // max
+        dailyTarget.sodium = 2300;                                                              // max
+        dailyTarget.carbs = (int)Math.round(((double)dailyTarget.calorie * 0.55)/4);            // recommended
+        if (gender == MALE) {
+            dailyTarget.fiber = 31;                                                             // recommended
+            dailyTarget.sugar = 36;                                                             // max
+        }
+        else if (gender == FEMALE){
+            dailyTarget.fiber = 25;                                                             // recommended
+            dailyTarget.sugar = 24;                                                             // max
+        }
+        else
+            return -1;
+        dailyTarget.protein = (int)Math.round(((double)dailyTarget.calorie * 0.225)/4);         // recommended
+
+        // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
+        dailyTarget.vitA = 100;
+        dailyTarget.vitC = 100;
+        dailyTarget.calcium = 100;
+        dailyTarget.iron = 100;
+
+        return 0;
+    }
+
+    // calculate proportion of meal's nutrition based on daily total
+    public void setMealsTarget(Nutrients n, double percentage) {
+        n.calorie = (int)Math.round(percentage * dailyTarget.calorie);
+        n.totalFat = (int)Math.round(percentage * dailyTarget.totalFat);
+        n.saturatedFat = (int)Math.round(percentage * dailyTarget.saturatedFat);
+        n.transFat = (int)Math.round(percentage * dailyTarget.transFat);
+        n.cholesterol = (int)Math.round(percentage * dailyTarget.cholesterol);
+        n.sodium = (int)Math.round(percentage * dailyTarget.sodium);
+        n.carbs = (int)Math.round(percentage * dailyTarget.carbs);
+        n.fiber = (int)Math.round(percentage * dailyTarget.fiber);
+        n.sugar = (int)Math.round(percentage * dailyTarget.sugar);
+        n.protein = (int)Math.round(percentage * dailyTarget.protein);
+        n.vitA = (int)Math.round(percentage * dailyTarget.vitA);
+        n.vitC = (int)Math.round(percentage * dailyTarget.vitC);
+        n.calcium = (int)Math.round(percentage * dailyTarget.calcium);
+        n.iron = (int)Math.round(percentage * dailyTarget.iron);
+    }
+
     //TODO : return breakfast, lunch, dinner, dailytotal, lifetotal stuff.
-    public Nutrients getTarget(int target){
-        if (target == BREAKFAST){
-            return brkTarget;
-        }
-        else if (target == LUNCH){
-            return lunchTarget;
-        }
-        else if (target == DINNER){
-            return dinnerTarget;
-        }
-        else{
-            return null; //it's error
-        }
+    public int /*Nutrients*/ getTarget(){
+        return -1;
 
     }
 
@@ -107,5 +203,6 @@ public class UserProfile {
     public void setWeight(int weight) { this.weight = weight; }
     public void setHeight(int height) {this.height = height; }
     public int getWeight() { return weight;}
+    public int getHeight() {return height;}
     //TODO: finish creating auxiliary functions for weight, height, target.
 }
