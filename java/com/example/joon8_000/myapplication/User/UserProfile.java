@@ -27,8 +27,8 @@ public class UserProfile {
     public static final int BREAKFAST = 20;
     public static final int LUNCH = 21;
     public static final int DINNER = 22;
-    public static final int TOTAL = 23;
-    public static final int DAILY = 24;
+    public static final int DAILY = 23;
+    public static final int TOTAL = 24;
 
     // weight-height measurement
     public static final int METRIC = 30;
@@ -38,10 +38,10 @@ public class UserProfile {
     public static final double LUNCH_PERCENT = 0.40;
     public static final double DINNER_PERCENT = 0.40;
 
-    private Nutrients brkTarget;
-    private Nutrients lunchTarget;
-    private Nutrients dinnerTarget;
-    private Nutrients dailyTarget;
+    public Nutrients brkTarget;
+    public Nutrients lunchTarget;
+    public Nutrients dinnerTarget;
+    public Nutrients dailyTarget;
 
     private Nutrients lifeTotal;
     /*user input variables
@@ -184,9 +184,19 @@ public class UserProfile {
         n.iron = (int)Math.round(percentage * dailyTarget.iron);
     }
 
-    //TODO : return breakfast, lunch, dinner, dailytotal, lifetotal stuff.
-    public int /*Nutrients*/ getTarget(){
-        return -1;
+
+    public Nutrients getTarget(int meal){
+        if (meal == BREAKFAST)
+           return brkTarget;
+        else if (meal == LUNCH)
+            return lunchTarget;
+        else if (meal == DINNER)
+            return dinnerTarget;
+        else if (meal == DAILY)
+            return dailyTarget;
+        else
+            return dailyTarget; // error message
+
 
     }
 
@@ -202,7 +212,23 @@ public class UserProfile {
 
     public void setWeight(int weight) { this.weight = weight; }
     public void setHeight(int height) {this.height = height; }
+    public void setAge(int age) {this.age = age; }
+    public void setFirstName(String name) {this.firstName = name; }
+    public void setLastName(String name) {this.lastName = name; }
+    public void setExercise(int exercise) {this.exercise = exercise; }
+    public void setGoal(int goal) {this.goal = goal; }
+    public void setMeasurementSyst(int measurementSyst) {this.measurementSyst = measurementSyst; }
+    public void setEatBreakfast(boolean eat) {eatBreakfast = eat; }
+
+    public int getGender() { return gender;}
     public int getWeight() { return weight;}
     public int getHeight() {return height;}
-    //TODO: finish creating auxiliary functions for weight, height, target.
+    public int getAge() {return age;}
+    public String getFirstName() {return firstName;}
+    public String getLastName() {return lastName;}
+    public int getExercise() {return exercise;}
+    public int getGoal() {return goal;}
+    public int getMeasurementSyst() {return measurementSyst;}
+    public boolean getEatBreakfast() {return eatBreakfast;}
+
 }
