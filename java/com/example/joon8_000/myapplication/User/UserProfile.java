@@ -1,7 +1,7 @@
-package com.example.joon8_000.myapplication.User;
+package com.example.joon8_000.myapplication.user;
 
-import com.example.joon8_000.myapplication.MealList.MealList;
-import com.example.joon8_000.myapplication.MealList.Nutrients;
+import com.example.joon8_000.myapplication.meallist.MealList;
+import com.example.joon8_000.myapplication.meallist.Nutrients;
 
 /**
  * Created by joon8_000 on 7/23/2015.
@@ -185,9 +185,8 @@ public class UserProfile {
     }
 
     //TODO : return breakfast, lunch, dinner, dailytotal, lifetotal stuff.
-    public int /*Nutrients*/ getTarget(){
-        return -1;
-
+    public Nutrients /*Nutrients*/ getTarget(int foodTime){
+        return null; //so it compiles
     }
 
 
@@ -205,4 +204,5 @@ public class UserProfile {
     public int getWeight() { return weight;}
     public int getHeight() {return height;}
     //TODO: finish creating auxiliary functions for weight, height, target.
+
 }

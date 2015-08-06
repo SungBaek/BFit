@@ -1,4 +1,4 @@
-package com.example.joon8_000.myapplication.MealList;
+package com.example.joon8_000.myapplication.meallist;
 
 /**
  * Created by joon8_000 on 8/3/2015.

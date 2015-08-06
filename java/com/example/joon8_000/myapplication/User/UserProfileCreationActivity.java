@@ -1,14 +1,11 @@
-package com.example.joon8_000.myapplication.User;
+package com.example.joon8_000.myapplication.user;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.joon8_000.myapplication.MyActivity;
 import com.example.joon8_000.myapplication.R;
 
 /**
