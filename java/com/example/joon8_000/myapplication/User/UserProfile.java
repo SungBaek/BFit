@@ -1,7 +1,7 @@
-package com.example.joon8_000.myapplication.User;
+package com.example.joon8_000.myapplication.user;
 
-import com.example.joon8_000.myapplication.MealList.MealList;
-import com.example.joon8_000.myapplication.MealList.Nutrients;
+import com.example.joon8_000.myapplication.meallist.MealList;
+import com.example.joon8_000.myapplication.meallist.Nutrients;
 
 /**
  * Created by joon8_000 on 7/23/2015.
@@ -38,12 +38,13 @@ public class UserProfile {
     public static final double LUNCH_PERCENT = 0.40;
     public static final double DINNER_PERCENT = 0.40;
 
+
     public Nutrients brkTarget;
     public Nutrients lunchTarget;
     public Nutrients dinnerTarget;
     public Nutrients dailyTarget;
 
-    private Nutrients lifeTotal;
+    public Nutrients lifeTotal;
     /*user input variables
     BMR, GENDER, ETC.
     */
@@ -184,7 +185,6 @@ public class UserProfile {
         n.iron = (int)Math.round(percentage * dailyTarget.iron);
     }
 
-
     public Nutrients getTarget(int meal){
         if (meal == BREAKFAST)
            return brkTarget;
@@ -196,7 +196,6 @@ public class UserProfile {
             return dailyTarget;
         else
             return dailyTarget; // error message
-
 
     }
 
@@ -230,5 +229,6 @@ public class UserProfile {
     public int getGoal() {return goal;}
     public int getMeasurementSyst() {return measurementSyst;}
     public boolean getEatBreakfast() {return eatBreakfast;}
+
 
 }

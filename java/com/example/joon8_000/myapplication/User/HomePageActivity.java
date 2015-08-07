@@ -1,13 +1,17 @@
-package com.example.joon8_000.myapplication.User;
+package com.example.joon8_000.myapplication.user;
 
+import android.app.Application;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.joon8_000.myapplication.R;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
-public class HomePageActivity extends ActionBarActivity {
+public class HomePageActivity extends AppCompatActivity {
 
     public void clickedThis() {
 

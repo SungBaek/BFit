@@ -1,28 +1,95 @@
-package com.example.joon8_000.myapplication.MealList;
+package com.example.joon8_000.myapplication.meallist;
+
+import com.example.joon8_000.myapplication.user.UserProfile;
 
 /**
  * Created by joon8_000 on 7/21/2015.
  */
 public class Meal {
+
+    public static final int BREAKFAST = UserProfile.BREAKFAST;
+    public static final int LUNCH = UserProfile.LUNCH;
+    public static final int DINNER = UserProfile.DINNER;
+    public static final int TOTAL = UserProfile.TOTAL;
+    public static final int DAILY = UserProfile.DAILY;
+
+
+    private int brkCount;
+    private int lunchCount;
+    private int dinnerCount;
+    private int totalCount;
     protected String mealName;
-    protected int numberEaten;
     protected boolean canEat;
     protected Nutrients nutrients;
 
     //methods
     public Meal(String mealName, Nutrients nutrients)
     {
+        this.brkCount = 0;
+        this.lunchCount = 0;
+        this.dinnerCount = 0;
+        this.totalCount = 0;
         this.mealName = mealName;
         this.nutrients = nutrients;
-        numberEaten = 0;
         canEat = true;
     }
-    public void eatThis(){ numberEaten++; }
+
+    public int getCount(int foodTime) {
+        if(foodTime == BREAKFAST)
+            return this.brkCount;
+        else if(foodTime == LUNCH)
+            return this.lunchCount;
+        else if(foodTime == DINNER)
+            return this.dinnerCount;
+        else if(foodTime == DAILY)
+            return this.totalCount;
+        else
+            return -1; //it's error
+    }
+
+    public void eatThis(int mealTime) {
+        if(mealTime == BREAKFAST){
+            brkCount++;
+            totalCount++;
+        }
+        else if(mealTime == LUNCH){
+            lunchCount++;
+            totalCount++;
+        }
+        else if(mealTime == DINNER){
+            dinnerCount++;
+            totalCount++;
+        }
+        else if(mealTime == DAILY){
+            dinnerCount++;
+            totalCount++;
+        }
+        else
+            ; //error
+        }
+
+    //In case there was a user error.
+    public void setCount(int mealTime, int count){
+        if (mealTime == BREAKFAST){
+            totalCount = totalCount + (count - brkCount);
+            brkCount = count;
+        }
+        else if (mealTime == LUNCH){
+            totalCount = totalCount + (count - lunchCount);
+            lunchCount = count;
+        }
+        else if (mealTime == DINNER){
+            totalCount = totalCount + (count - dinnerCount);
+            dinnerCount = count;
+        }
+        else  //error
+            ;
+    }
+
     public String getName() { return mealName; }
     public int getFat() { return nutrients.totalFat; }
     public int getCalorie() {return nutrients.calorie; }
-    public int getCount() { return numberEaten; }
+
     public void setCanEat(boolean canEat) { this.canEat= canEat; }
-
-
-}
+    public boolean getCatEat() { return this.canEat; }
+    public Nutrients getNutrients() { return this.nutrients; }}
