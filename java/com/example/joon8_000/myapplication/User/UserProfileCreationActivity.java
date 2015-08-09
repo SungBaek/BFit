@@ -26,7 +26,7 @@ public class UserProfileCreationActivity extends AppCompatActivity{
         String msgGender = gender.getText().toString();
         String msgWeight = weight.getText().toString();
         String msgHeight = height.getText().toString();
-        //store them in intent
+        //store them 0in intent
         intent.putExtra(GENDER, msgGender);
         intent.putExtra(WEIGHT, msgWeight);
         intent.putExtra(HEIGHT, msgHeight);

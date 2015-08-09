@@ -7,10 +7,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joon8_000.myapplication.R;
+import com.parse.FunctionCallback;
+import com.parse.Parse;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserProfileCreationEchoActivity extends AppCompatActivity {
+
+    public void testParse() {
+        final HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("movie", "The Matrix");
+        ParseCloud.callFunctionInBackground("populateHedrick", params, new FunctionCallback<Float>() {
+            @Override
+            public void done(Float ratings, ParseException e) {
+                if (e == null) {
+                    Toast.makeText(null, "it worked", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +59,7 @@ public class UserProfileCreationEchoActivity extends AppCompatActivity {
         linearLayout.addView(textView2);
         linearLayout.addView(textView3);
 
+        testParse();
         //set this
         setContentView(linearLayout);
     }
