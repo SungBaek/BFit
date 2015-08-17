@@ -17,7 +17,7 @@ public class UserProfileCreationActivity extends AppCompatActivity{
     public final static String HEIGHT = "com.example.joon8_000.myapplication.User.HEIGHT";
 
 
-    public void createUserProfile(View view) {
+    public void callEcho(View view) {
         Intent intent = new Intent(this, UserProfileCreationEchoActivity.class);
         EditText gender = (EditText) findViewById(R.id.gender);
         EditText weight = (EditText) findViewById(R.id.weight);

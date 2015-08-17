@@ -2,8 +2,8 @@ package com.example.joon8_000.myapplication;
 
 import android.app.Application;
 
-import com.parse.parse;
-import com.parse.parseObject;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 /**
  * Created by joon8_000 on 8/5/2015.

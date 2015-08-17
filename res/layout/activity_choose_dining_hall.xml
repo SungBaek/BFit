@@ -7,8 +7,8 @@
     android:orientation="vertical"
     tools:context="com.example.joon8_000.myapplication.user.HomePageActivity">
 
-    <TextView android:text="@string/logo_intro" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+    <TextView android:text="Where are we eating?" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="30dp"
         android:textStyle="bold"/>
@@ -18,7 +18,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Get Meals"
+        android:text="Covel"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
@@ -30,7 +30,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="View Profile"
+        android:text="De Neve"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
@@ -42,7 +42,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="About"
+        android:text="Feast"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
@@ -54,11 +54,35 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Create Profile"
+        android:text="Hedrick"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
         android:onClick="createUserProfile"
         android:background="@color/bright_foreground_material_dark"/>
 
+
+    <TextView
+    android:layout_width="200dp"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:text="Sproul"
+    android:textSize="20dp"
+    android:textAlignment="center"
+    android:clickable="true"
+    android:onClick="createUserProfile"
+    android:background="@color/bright_foreground_material_dark"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="TODO: add more, rende, bcafe, etc."
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:onClick="createUserProfile"
+        android:background="@color/bright_foreground_material_dark"/>
 </LinearLayout>

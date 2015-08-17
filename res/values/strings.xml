@@ -5,10 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_display_message">My Message</string>
 
+    <string name="logo_intro">Bruin Fit</string>
     <string name="introduction">Welcome to BFit!</string>
     <string name="hello_world">Hello world!</string>
     <string name="some_day">Some day!</string>
     <string name="title_activity_user_profile_creation_echo">UserProfileCreationEchoActivity
     </string>
     <string name="title_activity_home_page">HomePageActivity</string>
+    <string name="title_activity_choose_dining_hall">ChooseDiningHallActivity</string>
 </resources>

@@ -22,8 +22,8 @@ public class UserProfileCreationEchoActivity extends AppCompatActivity {
 
     public void testParse() {
         final HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("movie", "The Matrix");
-        ParseCloud.callFunctionInBackground("populateHedrick", params, new FunctionCallback<Float>() {
+        params.put("movie", "The Matrix"); //why do I need this?
+        ParseCloud.callFunctionInBackground("populateDiningHallMenus", params, new FunctionCallback<Float>() {
             @Override
             public void done(Float ratings, ParseException e) {
                 if (e == null) {

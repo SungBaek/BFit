@@ -1,44 +1,24 @@
-package com.example.joon8_000.myapplication.user;
+package com.example.joon8_000.myapplication.meallist;
 
-import android.app.Application;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
 import com.example.joon8_000.myapplication.R;
-import com.parse.Parse;
-import com.parse.ParseObject;
 
-public class HomePageActivity extends AppCompatActivity {
+public class ChooseDiningHallActivity extends ActionBarActivity {
 
-    public void createUserProfile(View view) {
-        Intent intent = new Intent(this, UserProfileCreationActivity.class);
-        startActivity(intent);
-    }
-    public void viewUserProfile(View view) {
-        //TODO: implement this
-    }
-    public void openMeals(View view) {
-        //TODO: implement this
-    }
-    public void openAbout(View view){
-        //TODO: implement this
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_choose_dining_hall);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page, menu);
+        getMenuInflater().inflate(R.menu.menu_choose_dining_hall, menu);
         return true;
     }
 
