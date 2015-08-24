@@ -6,6 +6,9 @@ import java.io.*;
 /**
  * Created by joon8_000 on 8/3/2015.
  */
+
+//NO USE FOR THIS CODE RIGHT NOW
+    //ARCHIEVED
 public class Parser {
 
     private final static String PATH = "http://menu.ha.ucla.edu/foodpro/nutritiveanalysis.asp?";

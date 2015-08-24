@@ -2,6 +2,8 @@ package com.example.joon8_000.myapplication;
 
 import android.app.Application;
 
+import com.example.joon8_000.myapplication.meallist.MealList;
+import com.example.joon8_000.myapplication.user.UserProfile;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -9,6 +11,9 @@ import com.parse.ParseObject;
  * Created by joon8_000 on 8/5/2015.
  */
 public class BruinFit extends Application {
+    private MealList mealList;
+    private UserProfile user;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,6 +26,9 @@ public class BruinFit extends Application {
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
+
+        //intialize data here
+
 
     }
 }

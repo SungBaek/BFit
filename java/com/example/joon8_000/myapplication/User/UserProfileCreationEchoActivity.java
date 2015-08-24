@@ -36,7 +36,7 @@ public class UserProfileCreationEchoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile_creation_echo);
+       //setContentView(R.layout.activity_user_profile_creation_echo);
 
         Intent intent = getIntent();
 
@@ -59,9 +59,10 @@ public class UserProfileCreationEchoActivity extends AppCompatActivity {
         linearLayout.addView(textView2);
         linearLayout.addView(textView3);
 
-        testParse();
+
         //set this
         setContentView(linearLayout);
+        testParse();
     }
 
     @Override
