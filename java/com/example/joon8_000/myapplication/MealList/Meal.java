@@ -47,22 +47,31 @@ public class Meal {
             return -1; //it's error
     }
 
-    public void eatThis(int mealTime) {
+    public void eatThis(MealList mealList, int mealTime) {
         if(mealTime == BREAKFAST){
             brkCount++;
             totalCount++;
+            mealList.addCalorie(this.nutrients.calorie);
+            mealList.addFat(this.nutrients.totalFat);
         }
         else if(mealTime == LUNCH){
             lunchCount++;
             totalCount++;
+            mealList.addCalorie(this.nutrients.calorie);
+            mealList.addFat(this.nutrients.totalFat);
+
         }
         else if(mealTime == DINNER){
             dinnerCount++;
             totalCount++;
+            mealList.addCalorie(this.nutrients.calorie);
+            mealList.addFat(this.nutrients.totalFat);
         }
         else if(mealTime == DAILY){
             dinnerCount++;
             totalCount++;
+            mealList.addCalorie(this.nutrients.calorie);
+            mealList.addFat(this.nutrients.totalFat);
         }
         else
             ; //error

@@ -75,6 +75,7 @@
     android:background="@color/bright_foreground_material_dark"/>
 
     <TextView
+
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center"

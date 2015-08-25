@@ -28,12 +28,17 @@ public class MealList {
     protected int size;
     protected HashMap<String, Meal> meals;
     protected Nutrients userTarget;
+
+    int totalFat;
+    int totalCalorie;
 //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
 
     //get all objects and save it into the hash map.
     public MealList(Nutrients userTarget)    {
         this.userTarget = userTarget;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
+        totalFat = 0;
+        totalCalorie = 0;
 
        try {
            List<ParseObject> list  = query.find();
@@ -50,6 +55,18 @@ public class MealList {
 
     }
 
+    //helper function for calculating total
+    protected void calcTotal(int foodTime){
+        //for each meal get the total fat and total calorie already eaten.
+        //iterate through every entry and add them all
+        for(Map.Entry<String, Meal> chosenMeal : meals.entrySet()) {
+            String key = chosenMeal.getKey();
+            Meal value = chosenMeal.getValue();
+
+            totalFat += value.getFat()*value.getCount(foodTime);
+            totalCalorie += value.getCalorie()*value.getCount(foodTime);
+        }
+    }
     //helper function for parsing parseobject
     protected Meal objectParser(ParseObject e){
         Meal m;
@@ -93,22 +110,10 @@ public class MealList {
     //separate for breakfast, lunch, dinner?
     public int calcEateries(UserProfile userProfile, int foodTime)
     {
-        int fatCounter  = 0;
-        int calorieCounter = 0;
-        //for each meal get the total fat and total calorie already eaten.
-        //iterate through every entry and add them all
-        //TODO: find a more efficient implementation
-        for(Map.Entry<String, Meal> chosenMeal : meals.entrySet()) {
-             String key = chosenMeal.getKey();
-             Meal value = chosenMeal.getValue();
-
-             fatCounter += value.getFat()*value.getCount(foodTime);
-             calorieCounter += value.getCalorie()*value.getCount(foodTime);
-        }
         for(Map.Entry<String, Meal> chosenMeal : meals.entrySet()) {
             //go through every elements in meals then see if nutrientvalue + current >= maxallowed.
-            if (chosenMeal.getValue().getNutrients().calorie > userProfile.getTarget(foodTime).calorie - calorieCounter
-                    || chosenMeal.getValue().getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - fatCounter) {
+            if (chosenMeal.getValue().getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalCalorie
+                    || chosenMeal.getValue().getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - this.totalFat) {
                 chosenMeal.getValue().setCanEat(false);
             }
             else
@@ -123,4 +128,10 @@ public class MealList {
     public Meal getMeal(String s) { return meals.get(s); }
     public HashMap<String, Meal> getMeals()
     { return meals; }
+    public void addCalorie(int calorie){
+        this.totalCalorie += calorie;
+    }
+    public void addFat(int fat){
+        this.totalFat = fat;
+    }
 }

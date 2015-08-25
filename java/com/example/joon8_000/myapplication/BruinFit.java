@@ -27,8 +27,9 @@ public class BruinFit extends Application {
         testObject.put("foo", "bar");
         testObject.saveInBackground();
 
-        //intialize data here
-
+        //intialize local data here
+        UserProfile up;
+        MealList ml;
 
     }
 }

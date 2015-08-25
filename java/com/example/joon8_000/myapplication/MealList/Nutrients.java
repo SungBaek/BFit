@@ -16,10 +16,10 @@ public class Nutrients {
     public int sugar;
     // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
     //vita, iron, calcium not avaiable on the mobile version.
- // public int vitA;
- // public int vitC;
- // public int iron;
- // public int calcium;
+    public int vitA;
+    public int vitC;
+    public int iron;
+    public int calcium;
 
     public Nutrients()
     {
@@ -34,9 +34,9 @@ public class Nutrients {
         protein = 0;
         sugar = 0;
         // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
-        //vitA = 0;
-       //vitC = 0;
-       //iron = 0;
-       //calcium = 0;
+        vitA = 0;
+       vitC = 0;
+       iron = 0;
+       calcium = 0;
     }
 }

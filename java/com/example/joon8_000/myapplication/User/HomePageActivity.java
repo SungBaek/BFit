@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.joon8_000.myapplication.R;
+import com.example.joon8_000.myapplication.meallist.ChooseDiningHallActivity;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -24,7 +25,8 @@ public class HomePageActivity extends AppCompatActivity {
         //TODO: implement this
     }
     public void openMeals(View view) {
-        //TODO: implement this
+        Intent intent = new Intent (this, ChooseDiningHallActivity.class);
+        startActivity(intent);
     }
     public void openAbout(View view){
         //TODO: implement this
