@@ -58,7 +58,7 @@
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
-        android:onClick="createUserProfile"
+        android:onClick="openHedrick"
         android:background="@color/bright_foreground_material_dark"/>
 
 
@@ -84,6 +84,6 @@
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
-        android:onClick="createUserProfile"
+        android:onClick="destroyData"
         android:background="@color/bright_foreground_material_dark"/>
 </LinearLayout>

@@ -5,18 +5,45 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.joon8_000.myapplication.DisplayMessageActivity">
+    tools:context="com.example.joon8_000.myapplication.user.UserProfileCreationActivity">
 
     <TextView android:text="@string/introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="50dp"
+        android:layout_margin="10dp"
         android:textSize="30sp"/>
 
     <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
 
         android:text="Type your user parameters" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="male"/>
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="female"/>
+        </RadioGroup>
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/age"
+            android:singleLine="true"
+            android:hint="Age"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/first_name"
@@ -35,13 +62,6 @@
         android:hint="Last Name"/>
 
     <EditText
-        android:id ="@+id/gender"
-        android:hint="Gender"
-        android:layout_marginLeft="@dimen/left_indent"
-        android:singleLine="true"
-        android:layout_height="wrap_content"
-        android:layout_width="200sp" />
-    <EditText
         android:id="@+id/weight"
         android:layout_marginLeft="@dimen/left_indent"
         android:singleLine="true"
@@ -55,6 +75,26 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:hint="Height"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/lose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lose"/>
+        <RadioButton
+            android:id="@+id/stay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="stay"/>
+        <RadioButton
+            android:id="@+id/gain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gain"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/submit_user_profile"
@@ -63,7 +103,6 @@
         android:text="Submit"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:onClick="callEcho"/>
-
+        android:onClick="createUser"/>
 
 </LinearLayout>

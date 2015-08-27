@@ -28,10 +28,11 @@ public class MealList {
     protected int size;
     protected HashMap<String, Meal> meals;
     protected Nutrients userTarget;
-
+    private UserProfile userProfile;
+    
     int totalFat;
     int totalCalorie;
-//TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
+    //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
 
     //get all objects and save it into the hash map.
     public MealList(Nutrients userTarget)    {
@@ -132,6 +133,6 @@ public class MealList {
         this.totalCalorie += calorie;
     }
     public void addFat(int fat){
-        this.totalFat = fat;
+        this.totalFat += fat;
     }
 }

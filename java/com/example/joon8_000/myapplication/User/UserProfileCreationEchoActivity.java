@@ -20,18 +20,6 @@ import java.util.Map;
 
 public class UserProfileCreationEchoActivity extends AppCompatActivity {
 
-    public void testParse() {
-        final HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("movie", "The Matrix"); //why do I need this?
-        ParseCloud.callFunctionInBackground("populateDiningHallMenus", params, new FunctionCallback<Float>() {
-            @Override
-            public void done(Float ratings, ParseException e) {
-                if (e == null) {
-                    Toast.makeText(null, "it worked", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +50,6 @@ public class UserProfileCreationEchoActivity extends AppCompatActivity {
 
         //set this
         setContentView(linearLayout);
-        testParse();
     }
 
     @Override

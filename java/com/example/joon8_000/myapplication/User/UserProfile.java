@@ -64,6 +64,15 @@ public class UserProfile {
     private MealList mealList;
 
     //constructor
+    public void setBasicProperties(int gender, int age, int weight, int height, String first, String last){
+        this.gender = gender;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.firstName = first;
+        this.lastName = last;
+    }
+
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
         this.gender = gender;
         this.age = age;

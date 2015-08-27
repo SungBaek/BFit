@@ -41,6 +41,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.joon8_000.myapplication.user.HomePageActivity" />
         </activity>
+        <activity
+            android:name=".meallist.PickFoodTypeActivity"
+            android:label="@string/title_activity_pick_food_type" >
+        </activity>
+        <activity
+            android:name=".meallist.FoodTestActivity"
+            android:label="@string/title_activity_food_test"
+            android:parentActivityName=".meallist.ChooseDiningHallActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.joon8_000.myapplication.meallist.ChooseDiningHallActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -5,12 +5,13 @@ var mealPath = "http://m.dining.ucla.edu/menu/";
 
 
 function getNutrients(http){
+  var promise = new Parse.Promise();
   Parse.Cloud.httpRequest({
     url: http
   }).then(function(httpResponse) {
     //success
     var html = httpResponse.text;
-    console.log("Inside get Nutrients");
+    //console.log("Inside get Nutrients");
 
     //to test if it worked
     
@@ -29,11 +30,10 @@ function getNutrients(http){
         options.error(e.message);
       }
     });*/
-   
-
       //calorie
 
-        var obj = new Parse.Object("Nutrients");
+        var ObjClass = Parse.Object.extend("Nutrients");
+        var obj = new ObjClass();
         var cal_re = new RegExp(/Calories:\<\/strong\>\s([0-9\.]*)/); 
         var calOut = cal_re.exec(html);
         var outputText = '{ "Calorie : " '+ calOut[1];
@@ -110,19 +110,10 @@ function getNutrients(http){
 
       outputText += ' }';
       //var outputJSON = JSON.parse(outputText);
-      console.log("Got this nutrient: " + outputText);
-
+      //console.log("Got this nutrient: " + outputText);
+      promise.resolve(obj); 
       //save here
-      obj.save(null,
-      {success:function (a) {
-        console.log("worked!");
-        options.success();
-      },
-      error:function(a, e) {
-        console.log("didn't work" + e.message);
-        options.error(e.message);
-      }
-    }); //lol
+     //lol
       /*
       nutrients.save(outputJSON, {success: function(a) {
         //success handling
@@ -134,8 +125,10 @@ function getNutrients(http){
       }
       });*/
     }, function(HttpResponse) {
-    console.error('request failed dawg');
+    console.error('couldn\'t get nutrient');
+    promise.reject("nutrient promise failed");
   });
+  return promise;
 }
 
 
@@ -145,17 +138,47 @@ function extractMeal(http){
   }).then(function(httpResponse){
     var re = new RegExp(/nutritional\.cfm\?[^"]*/g);
     var output = re.exec(httpResponse.text);
-    
+    var promiseArray = [];
+
+    //hold all parse object elements then save all of them at once.ll
     while (output != null){
-        //got the url here call the function here and do it again
         var outputPath = mealPath + output;
-        console.log("Extra meal output : " + outputPath); //use this to test output.
-        getNutrients(outputPath);
+        //console.log("Extra meal output : " + outputPath); //use this to test output.
+        promiseArray.push(getNutrients(outputPath));
         output = re.exec(httpResponse.text);
     }
+    //create an array of outputs.
+    //create an array of promises then saveall.
+
+    //save all here
+    //if promisearray has been resolved then create an array of arguments then save it all.
+    Parse.Promise.when(promiseArray).then(function(){
+      var objHolder = [];
+      for(i = 0; i < promiseArray.length; i++){
+        objHolder.push(arguments[i]);
+        if(i == 0){
+          console.log(arguments[i].toJSON());
+        }
+      }
+      return Parse.Promise.as(objHolder);
+    }).then(function(objHolder){
+      console.log(objHolder[0].toJSON());
+      return Parse.Object.saveAll(objHolder,
+      {success:function (a) {
+        console.log("we saved! " + a.length);
+      },
+      error:function(e) {
+        console.log("didn't work" + e.message);
+      }
+    });
+
   }, function(HttpResponse) {
-    console.error('request failed dawg');
+    console.error('extratMeal failed');
   });  
+
+    });
+
+
 }
 
 Parse.Cloud.define("populateDiningHallMenus", function(request,response){
@@ -194,8 +217,16 @@ Parse.Cloud.define("populateDiningHallMenus", function(request,response){
       console.log("no covel :(");
     }
     //feast
-    var feast_re = new RegExp(/"visitorHeadings"\>\<a\shref="([^"]*)"\>FEAST\sAt\sRieber/);
+    var feast_re = new RegExp(/"visitorHeadings"\>\<a\shref="([^"]*)"\>FEAST\sat\sRieber/);
     var feastOut = feast_re.exec(httpResponse.text);
+    if ( feastOut !== null){
+      var feastPath = path + feastOut[1];
+      console.log("feast output: " + feastPath);
+      //extractMeal(feastPath);
+    }
+    else{
+      console.log("no feast :(")
+    }
       
   }, function(HttpResponse) {
     console.error('request failed dawg');

@@ -13,4 +13,6 @@
     </string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_choose_dining_hall">ChooseDiningHallActivity</string>
+    <string name="title_activity_pick_food_type">PickFoodTypeActivity</string>
+    <string name="title_activity_food_test">FoodTestActivity</string>
 </resources>
