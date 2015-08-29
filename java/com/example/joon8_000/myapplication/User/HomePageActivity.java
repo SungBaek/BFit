@@ -1,21 +1,19 @@
 package com.example.joon8_000.myapplication.user;
 
-import android.app.Application;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 
 import com.example.joon8_000.myapplication.R;
 import com.example.joon8_000.myapplication.meallist.ChooseDiningHallActivity;
-import com.parse.Parse;
-import com.parse.ParseObject;
 
 public class HomePageActivity extends AppCompatActivity {
+
+    private Toolbar mToolbar;
 
     public void createUserProfile(View view) {
         Intent intent = new Intent(this, UserProfileCreationActivity.class);
@@ -36,6 +34,9 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
     }
 
     @Override
