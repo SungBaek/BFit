@@ -2,7 +2,7 @@
 <resources>
     <!-- the theme applied to the application or activity -->
     <style name="AppTheme"
-        parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
     </style>
