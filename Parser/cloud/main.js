@@ -2,128 +2,76 @@
 // For example:
 var path = "http://m.dining.ucla.edu/menu/index.cfm?";
 var mealPath = "http://m.dining.ucla.edu/menu/";
+var homePath = "http://m.dining.ucla.edu/menu/index.cfm?restaurantType=Residential";
 
-
-function getNutrients(http){
+function getNutrients(http, dining, time){
   var promise = new Parse.Promise();
   Parse.Cloud.httpRequest({
     url: http
   }).then(function(httpResponse) {
     //success
     var html = httpResponse.text;
-    //console.log("Inside get Nutrients");
 
-    //to test if it worked
-    
-    /*
-    var MyClass = Parse.Object.extend("Cloudd");
-    var test = new MyClass();
-    test.add("test", "arrrr");
-    console.log(test.toJSON());
-    test.save(null,
-      {success:function (a) {
-        console.log("worked!");
-        options.success();
-      },
-      error:function(a, e) {
-        console.log("didn't work" + e.message);
-        options.error(e.message);
-      }
-    });*/
-      //calorie
+    //Parse object initiation
+    var ObjClass = Parse.Object.extend("Nutrients");
+    var obj = new ObjClass();
 
-        var ObjClass = Parse.Object.extend("Nutrients");
-        var obj = new ObjClass();
-        var cal_re = new RegExp(/Calories:\<\/strong\>\s([0-9\.]*)/); 
-        var calOut = cal_re.exec(html);
-        var outputText = '{ "Calorie : " '+ calOut[1];
-        obj.set("calorie", calOut[1]);
-        //name
-        var name_re = new RegExp(/Nutritional information<br\/>$\s*(.*)$/m);
-        var nameOut = name_re.exec(html);
-        var outputText = ', "Name" : ' + nameOut[1];
-        obj.set("name", nameOut[1]);
-        //calorie from fat
-        var calFromFat_re = new RegExp(/Calories\sfrom\sFat:\s([0-9\.]*)/);
-        var calFromFatOut = calFromFat_re.exec(html);
-        outputText += ', "Calorie From Fat" : ' + calFromFatOut[1];
-        obj.set("fatCalorie", calFromFatOut[1]);
+    //dining hall
+    obj.set("diningHall", dining);
+    //break,lunch, or dinner?
+    obj.set("time", time);
+    //calorie
+    var cal_re = new RegExp(/Calories:\<\/strong\>\s([0-9\.]*)/); 
+    var calOut = cal_re.exec(html);
+    obj.set("calorie", calOut[1]);
+    //name
+    var name_re = new RegExp(/Nutritional information<br\/>$\s*(.*)$/m);
+    var nameOut = name_re.exec(html);
+    obj.set("name", nameOut[1]);
+    //calorie from fat
+    var calFromFat_re = new RegExp(/Calories\sfrom\sFat:\s([0-9\.]*)/);
+    var calFromFatOut = calFromFat_re.exec(html);
+    obj.set("fatCalorie", calFromFatOut[1]);
+    //Total fat
+    var totFat_re = new RegExp(/Total\sFat:\<\/strong\>\s([0-9\.]*)/);
+    var totFatOut = totFat_re.exec(html);
+    obj.set("totFat", totFatOut[1]);
+    //saturated fat
+    var satFat_re = new RegExp(/Saturated\sFat:\s([0-9\.]*)/);
+    var satFatOut = satFat_re.exec(html);
+    obj.set("satFat", satFatOut[1]);
+    //Trans fat
+    var transFat_re = new RegExp(/Trans\sFat:\s([0-9\.]*)/);
+    var transFatOut = transFat_re.exec(html);
+    obj.set("transFat", transFatOut[1]);
+    //cholesterol
+    var chol_re = new RegExp(/Cholesterol:\<\/strong\>\s([0-9\.]*)/);
+    var cholOut = chol_re.exec(html);
+    obj.set("chol", cholOut[1]);
+    //sodium
+    var sod_re = new RegExp(/Sodium:\<\/strong\>\s([0-9\.]*)/);
+    var sodOut = sod_re.exec(html);
+    obj.set("sod", sodOut[1]);
+    //Total Carbohydrate:
+    var totCarb_re = new RegExp(/Total\sCarbohydrate:\<\/strong\>\s([0-9\.]*)/);
+    var totCarbOut = totCarb_re.exec(html);
+    obj.set("carb", totCarbOut[1]);
+    //Dietary Fiber: 
+    var fib_re = new RegExp(/Dietary\sFiber:\s([0-9\.]*)/);
+    var fibOut = fib_re.exec(html);
+    obj.set("fiber", fibOut[1]);
+    //sugar
+    var sug_re = new RegExp(/Sugars:\s([0-9\.]*)/);
+    var sugOut = sug_re.exec(html);
+    obj.set("sugar", sugOut[1]);
+    //protein
+    var prot_re = new RegExp(/Protein:\<\/strong\>\s([0-9\.]*)/);
+    var protOut = prot_re.exec(html);
+    obj.set("protein", protOut[1]);
 
-      //Total fat
-        var totFat_re = new RegExp(/Total\sFat:\<\/strong\>\s([0-9\.]*)/);
-        var totFatOut = totFat_re.exec(html);
-        outputText += ', "Fat" :' + totFatOut[1];
-        obj.set("totFat", totFatOut[1]);
-      
-      //saturated fat
-        var satFat_re = new RegExp(/Saturated\sFat:\s([0-9\.]*)/);
-        var satFatOut = satFat_re.exec(html);
-        outputText += ', "Saturated Fat" :' + satFatOut[1];
-        obj.set("satFat", satFatOut[1]);
-
-      //Trans fat
-        var transFat_re = new RegExp(/Trans\sFat:\s([0-9\.]*)/);
-        var transFatOut = transFat_re.exec(html);
-        outputText += ', "Trans Fat" :' + transFatOut[1];
-        obj.set("transFat", transFatOut[1]);
-
-      //cholesterol
-        var chol_re = new RegExp(/Cholesterol:\<\/strong\>\s([0-9\.]*)/);
-        var cholOut = chol_re.exec(html);
-        outputText += ', "Cholesterol" :' + cholOut[1];
-        obj.set("chol", cholOut[1]);
-
-      //sodium
-        var sod_re = new RegExp(/Sodium:\<\/strong\>\s([0-9\.]*)/);
-        var sodOut = sod_re.exec(html);
-        outputText += ', "Sodium" :' + sodOut[1];
-        obj.set("sod", sodOut[1]);
-
-      //Total Carbohydrate:
-        var totCarb_re = new RegExp(/Total\sCarbohydrate:\<\/strong\>\s([0-9\.]*)/);
-        var totCarbOut = totCarb_re.exec(html);
-        outputText += ', "Total Carbohydrate" :' + totCarbOut[1];
-        obj.set("carb", totCarbOut[1]);
-
-      //Dietary Fiber: 
-        var fib_re = new RegExp(/Dietary\sFiber:\s([0-9\.]*)/);
-        var fibOut = fib_re.exec(html);
-        outputText += ', "Dietary Fiber" :' + fibOut[1];
-        obj.set("fiber", fibOut[1]);
-
-      //sugar
-        var sug_re = new RegExp(/Sugars:\s([0-9\.]*)/);
-        var sugOut = sug_re.exec(html);
-        outputText += ', "Sugars" :' + sugOut[1]; //
-        obj.set("sugar", sugOut[1]);
-
-      //protein
-        var prot_re = new RegExp(/Protein:\<\/strong\>\s([0-9\.]*)/);
-        var protOut = prot_re.exec(html);
-        outputText += ', "Protein" :' + protOut[1];
-        obj.set("protein", protOut[1]);
-
-
-
-      //end of nutrition facts
-
-
-      outputText += ' }';
-      //var outputJSON = JSON.parse(outputText);
-      //console.log("Got this nutrient: " + outputText);
-      promise.resolve(obj); 
+    promise.resolve(obj); //obj gets passed into promise which is returned.
       //save here
-     //lol
-      /*
-      nutrients.save(outputJSON, {success: function(a) {
-        //success handling
-        console.log("Success!!\n");
-        console.log(outputJSON);
-      }, 
-      error: function(a,b){
-        console.log("Couldn't save\n");
-      }
-      });*/
+
     }, function(HttpResponse) {
     console.error('couldn\'t get nutrient');
     promise.reject("nutrient promise failed");
@@ -132,7 +80,8 @@ function getNutrients(http){
 }
 
 
-function extractMeal(http){
+function extractMeal(http, dining, time){
+  var promise = new Parse.Promise();
   Parse.Cloud.httpRequest({
     url: http
   }).then(function(httpResponse){
@@ -140,46 +89,161 @@ function extractMeal(http){
     var output = re.exec(httpResponse.text);
     var promiseArray = [];
 
-    //hold all parse object elements then save all of them at once.ll
+    //hold all parse object elements then save all of them at once.
     while (output != null){
         var outputPath = mealPath + output;
-        //console.log("Extra meal output : " + outputPath); //use this to test output.
-        promiseArray.push(getNutrients(outputPath));
-        output = re.exec(httpResponse.text);
+        promiseArray.push(getNutrients(outputPath, dining, time)); //promise gets pushed
+        output = re.exec(httpResponse.text); //grab next element
     }
-    //create an array of outputs.
-    //create an array of promises then saveall.
-
-    //save all here
     //if promisearray has been resolved then create an array of arguments then save it all.
     Parse.Promise.when(promiseArray).then(function(){
       var objHolder = [];
-      for(i = 0; i < promiseArray.length; i++){
+      for(i = 0; i < promiseArray.length; i++){ 
+        //arguments[i] will grab the ith argument, which is the obj of ith.
         objHolder.push(arguments[i]);
         if(i == 0){
-          console.log(arguments[i].toJSON());
+          //sanity check
+        console.log(arguments[i].toJSON()); 
         }
       }
-      return Parse.Promise.as(objHolder);
-    }).then(function(objHolder){
-      console.log(objHolder[0].toJSON());
-      return Parse.Object.saveAll(objHolder,
-      {success:function (a) {
-        console.log("we saved! " + a.length);
-      },
-      error:function(e) {
-        console.log("didn't work" + e.message);
-      }
+      //put all the objects into obj holder.
+      promise.resolve(objHolder);
     });
-
   }, function(HttpResponse) {
     console.error('extratMeal failed');
+    promise.reject("extractmeal didn't work");
   });  
-
-    });
-
-
+  return promise;
 }
+
+function grabDining(http, time){
+    Parse.Cloud.httpRequest({
+    url: http
+  }).then(function(httpResponse) {
+    var html = httpResponse.text;
+    //to test if it works?
+
+    console.log("Success in connecting to dining halls!");
+    //create promise array and such.
+    var promiseArray = [];
+    //de neve
+    var deneve_re = new RegExp(/"visitorHeadings"\>\<a\shref="([^"]*)"\>De\sNeve/);
+    var deneveOut = deneve_re.exec(httpResponse.text);
+    if( deneveOut !== null){
+      //follow html here
+      var denevePath = path + deneveOut[1];
+      denevePath = path + denevePath;
+      console.log("Deneve Output: " + deneveOut);
+      promiseArray.push(extractMeal(denevePath, "deneve", time));
+    }
+    else{
+      console.log("no deneve :(");
+    }
+
+    //covel
+    var covel_re = new RegExp(/"visitorHeadings"\>\<a\shref="([^"]*)"\>Covel\sDining/);
+    var covelOut = covel_re.exec(httpResponse.text);
+    if( covelOut !== null){
+      var covelPath = path + covelOut[1];
+      console.log("covel output: " + covelPath);
+      promiseArray.push(extractMeal(covelPath, "covel", time));
+    }
+    else{
+      console.log("no covel :(");
+    }
+    //feast
+    var feast_re = new RegExp(/"visitorHeadings"\>\<a\shref="([^"]*)"\>FEAST\sat\sRieber/);
+    var feastOut = feast_re.exec(httpResponse.text);
+    if ( feastOut !== null){
+      var feastPath = path + feastOut[1];
+      console.log("feast output: " + feastPath);
+      promiseArray.push(extractMeal(feastPath, "feast", time));
+    }
+    else{
+      console.log("no feast :(")
+    }
+    //grab everything and save here
+    Parse.Promise.when(promiseArray).then(function(){
+    var objHolder = [];
+    for(i = 0; i < promiseArray.length; i++){ 
+      //arguments[i] will grab the ith argument, which is the obj of ith.
+      objHolder = objHolder.concat(arguments[i]);
+    }
+    return Parse.Promise.as(objHolder);
+    }).then(function(objHolder){
+      //save everything here
+      return Parse.Object.saveAll(objHolder,{
+          success:function (a) {
+          console.log("we saved! " + a.length);
+        },
+        error:function(e) {
+          console.log("didn't work" + e.message);
+        }
+      });
+    });
+    }, function(HttpResponse) {
+    console.error('request failed dawg');
+   });
+  }
+
+
+Parse.Cloud.job("jobtest", function(request,status){
+  status.success("yay");
+});
+
+Parse.Cloud.define("doBreakfast", function(request,response){
+Parse.Cloud.httpRequest({
+    url:homePath
+  }).then(function(httpResponse){
+    //success
+    var breakfastRe = new RegExp(/.*href="(.*Breakfast.*)".*/);
+    var breakfastOut = breakfastRe.exec(httpResponse.text);
+    if (breakfastOut !== null){
+      grabDining(breakfastOut[1], "breakfast");
+    }
+  }, function(httpResponse){
+    //error
+  });
+});
+
+Parse.Cloud.define("doLunch", function(request,response){
+  Parse.Cloud.httpRequest({
+    url:homePath
+  }).then(function(httpResponse){
+    //success
+    var lunchRe = new RegExp(/.*href="(.*Lunch.*)".*/);
+    var lunchOut = lunchRe.exec(httpResponse.text);
+    var lunchPath = mealPath + lunchOut[1];
+    lunchPath = lunchPath.replace(/ /g,"%20")
+    console.log("follwing: " + lunchPath);
+    if (lunchOut !== null){
+      grabDining(lunchPath, "lunch");
+    }
+    else{
+      console.log("can't grab lunch:(");
+    }
+  }, function(httpResponse){
+    //error
+  });
+});
+
+Parse.Cloud.define("doDinner", function(request,response){
+  Parse.Cloud.httpRequest({
+    url:homePath
+  }).then(function(httpResponse){
+    //success
+    var dinnerRe = new RegExp(/.*href="(.*Dinner.*)".*/);
+    var dinnerOut = dinnerRe.exec(httpResponse.text);
+    if (dinnerOut !== null){
+      grabDining(dinnerOut[1], "lunch");
+    }
+    else{
+      console.log("can't grab dinner");
+    }
+  }, function(httpResponse){
+    //error
+  });
+});
 
 Parse.Cloud.define("populateDiningHallMenus", function(request,response){
   Parse.Cloud.httpRequest({

@@ -81,6 +81,7 @@ public class PickFoodTypeActivity extends AppCompatActivity {
               //  String item = ((TextView)view).getText().toString();
                 //Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
                 Toast.makeText(getBaseContext(), m.getName(), Toast.LENGTH_LONG).show();
+                m.eatThis(((BruinFit) getApplication()).getMeal(), UserProfile.DAILY);
 
             }
         });

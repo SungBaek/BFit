@@ -125,7 +125,17 @@ public class MealList {
 
     //returns null if it doesn't work
     //TODO: return a dummy meal if it doesn't work??
-    public Meal getMeal(String s) { return meals.get(1); }
+    public Meal getMeal(String s) {
+        for (Meal e : this.meals){
+            if (e.getName() == s){
+                return e;
+            }
+        }
+        //couldn't find it, return a dummy meal?
+        Nutrients tempN = new Nutrients();
+        Meal temp = new Meal("dummy", tempN);
+        return temp;
+    }
     public ArrayList<Meal> getMeals()
     { return meals; }
     public void addCalorie(int calorie){
