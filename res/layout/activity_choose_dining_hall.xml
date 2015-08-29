@@ -18,11 +18,11 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Covel"
+        android:text="populate dininghall"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
-        android:onClick="openMeals"
+        android:onClick="populateData"
         android:background="@color/bright_foreground_material_dark"/>
 
     <TextView
@@ -54,7 +54,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Hedrick"
+        android:text="testest"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
@@ -80,7 +80,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="TODO: add more, rende, bcafe, etc."
+        android:text="clear database"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
