@@ -10,7 +10,9 @@ import com.parse.ParseQuery;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +24,12 @@ import java.util.Map;
 /*
         Just tracking calories and fat for now. will add stuff later
         Need to decide if we are able to take the "food triangle" into consideration.
+        eventually add a variable for
  */
 public class MealList {
 
     protected int size;
-    protected HashMap<String, Meal> meals;
+    protected ArrayList<Meal> meals;
     protected Nutrients userTarget;
     private UserProfile userProfile;
     
@@ -34,19 +37,28 @@ public class MealList {
     int totalCalorie;
     //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
 
+    public String[] printTen(){
+        String[] poo = new String[10];
+        for (int i = 0 ; i < 10 && i < meals.size(); i++){
+            poo[i] = meals.get(i).getName();
+        }
+        return poo;
+    }
+
     //get all objects and save it into the hash map.
     public MealList(Nutrients userTarget)    {
+        //TODO:eventaully add a variable here for dining hall
         this.userTarget = userTarget;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
         totalFat = 0;
         totalCalorie = 0;
 
+        this.meals = new ArrayList<>();
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
            for (ParseObject e : list){
-               Meal m = objectParser(e);
-               meals.put(m.getName(), m);
+               meals.add(objectParser(e));
            }
 
        }
@@ -60,49 +72,36 @@ public class MealList {
     protected void calcTotal(int foodTime){
         //for each meal get the total fat and total calorie already eaten.
         //iterate through every entry and add them all
-        for(Map.Entry<String, Meal> chosenMeal : meals.entrySet()) {
-            String key = chosenMeal.getKey();
-            Meal value = chosenMeal.getValue();
+        for(Meal e : meals) {
 
-            totalFat += value.getFat()*value.getCount(foodTime);
-            totalCalorie += value.getCalorie()*value.getCount(foodTime);
+            totalFat += e.getFat()*e.getCount(foodTime);
+            totalCalorie += e.getCalorie()*e.getCount(foodTime);
         }
     }
     //helper function for parsing parseobject
-    protected Meal objectParser(ParseObject e){
+    public Meal objectParser(ParseObject e){
         Meal m;
         Nutrients nutrient = new Nutrients();
         //calorie
-        int[] temp = new int[1];
-        temp = (int[]) e.get("calorie"); // data are stored as an array of size 1
-        nutrient.calorie = temp[0];
+        nutrient.calorie = e.getInt("calorie"); // data are stored as an array of size 1
         //totalfat
-        temp = (int[]) e.get("totFat");
-        nutrient.totalFat = temp[0];
+        nutrient.totalFat = e.getInt("totFat");
         //saturatedfat
-        temp = (int[]) e.get("satFat");
-        nutrient.saturatedFat = temp[0];
+        nutrient.saturatedFat = e.getInt("satFat");
         //transfat
-        temp = (int[]) e.get("transFat");
-        nutrient.transFat = temp[0];
+        nutrient.transFat = e.getInt("transFat");
         //cholesterol
-        temp = (int[]) e.get("chol");
-        nutrient.cholesterol = temp[0];
+        nutrient.cholesterol = e.getInt("chol");
         //sodium
-        temp = (int[]) e.get("sod");
-        nutrient.sodium = temp[0];
+        nutrient.sodium = e.getInt("sod");
         //fiber
-        temp = (int[]) e.get("fiber");
-        nutrient.fiber = temp[0];
+        nutrient.fiber = e.getInt("fiber");
         //protein.
-        temp = (int[]) e.get("protein");
-        nutrient.protein = temp[0];
+        nutrient.protein = e.getInt("protein");
         //sugar
-        temp = (int[]) e.get("sugar");
-        nutrient.sugar = temp[0];
+        nutrient.sugar = e.getInt("sugar");
         //name
-        String[] tempName = (String[]) e.get("name");
-        String name = tempName[0];
+        String name = e.getString("name");
 
         m = new Meal(name, nutrient);
         return m;
@@ -111,14 +110,14 @@ public class MealList {
     //separate for breakfast, lunch, dinner?
     public int calcEateries(UserProfile userProfile, int foodTime)
     {
-        for(Map.Entry<String, Meal> chosenMeal : meals.entrySet()) {
+        for(Meal chosenMeal : meals) {
             //go through every elements in meals then see if nutrientvalue + current >= maxallowed.
-            if (chosenMeal.getValue().getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalCalorie
-                    || chosenMeal.getValue().getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - this.totalFat) {
-                chosenMeal.getValue().setCanEat(false);
+            if (chosenMeal.getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalCalorie
+                    || chosenMeal.getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - this.totalFat) {
+                chosenMeal.setCanEat(false);
             }
             else
-                chosenMeal.getValue().setCanEat(true);
+                chosenMeal.setCanEat(true);
 
         }
         return 0; //so it compiles
@@ -126,8 +125,8 @@ public class MealList {
 
     //returns null if it doesn't work
     //TODO: return a dummy meal if it doesn't work??
-    public Meal getMeal(String s) { return meals.get(s); }
-    public HashMap<String, Meal> getMeals()
+    public Meal getMeal(String s) { return meals.get(1); }
+    public ArrayList<Meal> getMeals()
     { return meals; }
     public void addCalorie(int calorie){
         this.totalCalorie += calorie;

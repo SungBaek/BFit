@@ -64,13 +64,17 @@ public class UserProfile {
     private MealList mealList;
 
     //constructor
-    public void setBasicProperties(int gender, int age, int weight, int height, String first, String last){
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.firstName = first;
-        this.lastName = last;
+    public UserProfile(){
+       this.gender = UserProfile.MALE;
+        this.age = 10;
+        this.weight = 130;
+        this.height = 20;
+        this.firstName = "smith";
+        this.lastName = "jake";
+        this.exercise = 1;
+        this.goal = UserProfile.STAY;
+        this.eatBreakfast = true;
+        this.measurementSyst = UserProfile.IMPERIAL;
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){

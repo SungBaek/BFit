@@ -37,71 +37,71 @@ function getNutrients(http){
         var cal_re = new RegExp(/Calories:\<\/strong\>\s([0-9\.]*)/); 
         var calOut = cal_re.exec(html);
         var outputText = '{ "Calorie : " '+ calOut[1];
-        obj.add("calorie", calOut[1]);
+        obj.set("calorie", calOut[1]);
         //name
         var name_re = new RegExp(/Nutritional information<br\/>$\s*(.*)$/m);
         var nameOut = name_re.exec(html);
         var outputText = ', "Name" : ' + nameOut[1];
-        obj.add("name", nameOut[1]);
+        obj.set("name", nameOut[1]);
         //calorie from fat
         var calFromFat_re = new RegExp(/Calories\sfrom\sFat:\s([0-9\.]*)/);
         var calFromFatOut = calFromFat_re.exec(html);
         outputText += ', "Calorie From Fat" : ' + calFromFatOut[1];
-        obj.add("fatCalorie", calFromFatOut[1]);
+        obj.set("fatCalorie", calFromFatOut[1]);
 
       //Total fat
         var totFat_re = new RegExp(/Total\sFat:\<\/strong\>\s([0-9\.]*)/);
         var totFatOut = totFat_re.exec(html);
         outputText += ', "Fat" :' + totFatOut[1];
-        obj.add("totFat", totFatOut[1]);
+        obj.set("totFat", totFatOut[1]);
       
       //saturated fat
         var satFat_re = new RegExp(/Saturated\sFat:\s([0-9\.]*)/);
         var satFatOut = satFat_re.exec(html);
         outputText += ', "Saturated Fat" :' + satFatOut[1];
-        obj.add("satFat", satFatOut[1]);
+        obj.set("satFat", satFatOut[1]);
 
       //Trans fat
         var transFat_re = new RegExp(/Trans\sFat:\s([0-9\.]*)/);
         var transFatOut = transFat_re.exec(html);
         outputText += ', "Trans Fat" :' + transFatOut[1];
-        obj.add("transFat", transFatOut[1]);
+        obj.set("transFat", transFatOut[1]);
 
       //cholesterol
         var chol_re = new RegExp(/Cholesterol:\<\/strong\>\s([0-9\.]*)/);
         var cholOut = chol_re.exec(html);
         outputText += ', "Cholesterol" :' + cholOut[1];
-        obj.add("chol", cholOut[1]);
+        obj.set("chol", cholOut[1]);
 
       //sodium
         var sod_re = new RegExp(/Sodium:\<\/strong\>\s([0-9\.]*)/);
         var sodOut = sod_re.exec(html);
         outputText += ', "Sodium" :' + sodOut[1];
-        obj.add("sod", sodOut[1]);
+        obj.set("sod", sodOut[1]);
 
       //Total Carbohydrate:
         var totCarb_re = new RegExp(/Total\sCarbohydrate:\<\/strong\>\s([0-9\.]*)/);
         var totCarbOut = totCarb_re.exec(html);
         outputText += ', "Total Carbohydrate" :' + totCarbOut[1];
-        obj.add("carb", totCarbOut[1]);
+        obj.set("carb", totCarbOut[1]);
 
       //Dietary Fiber: 
         var fib_re = new RegExp(/Dietary\sFiber:\s([0-9\.]*)/);
         var fibOut = fib_re.exec(html);
         outputText += ', "Dietary Fiber" :' + fibOut[1];
-        obj.add("fiber", fibOut[1]);
+        obj.set("fiber", fibOut[1]);
 
       //sugar
         var sug_re = new RegExp(/Sugars:\s([0-9\.]*)/);
         var sugOut = sug_re.exec(html);
         outputText += ', "Sugars" :' + sugOut[1]; //
-        obj.add("sugar", sugOut[1]);
+        obj.set("sugar", sugOut[1]);
 
       //protein
         var prot_re = new RegExp(/Protein:\<\/strong\>\s([0-9\.]*)/);
         var protOut = prot_re.exec(html);
         outputText += ', "Protein" :' + protOut[1];
-        obj.add("protein", protOut[1]);
+        obj.set("protein", protOut[1]);
 
 
 

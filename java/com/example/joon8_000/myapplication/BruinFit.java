@@ -17,10 +17,12 @@ public class BruinFit extends Application {
 
     public void startMealList(MealList m){
     //check if there is data, if not just end.
+
     }
 
     public void startUser(UserProfile u){
 ;   //check if there is data, if not wait for createuserprofile.
+        this.user = new UserProfile();
     }
     public MealList getMeal(){
         return this.mealList;
@@ -30,6 +32,11 @@ public class BruinFit extends Application {
     }
     public void setUser(UserProfile user){
         this.user = user;
+    }
+    public void setMealList(int time) {
+        //int might eventually be used depends
+        this.mealList = new MealList(getUser().getTarget(UserProfile.DAILY));
+
     }
 
     @Override

@@ -41,12 +41,10 @@ public class UserProfileCreationActivity extends Activity{
         });
     }
     public void createUser(View view){
-
-
         String firstName = ((EditText)findViewById(R.id.first_name)).getText().toString();
         String lastName = ((EditText) findViewById(R.id.last_name)).getText().toString();
         int gender=0;
-        /*
+
         if(((RadioButton)findViewById(R.id.female)).isChecked()){
             gender = UserProfile.FEMALE;
         }
@@ -55,12 +53,12 @@ public class UserProfileCreationActivity extends Activity{
         }
         else{
             //error
-        }*/
-        String weight =((EditText) findViewById(R.id.weight)).getText().toString();
-        int i_weight = Integer.parseInt(weight);
+        }
+        String Sweight =((EditText) findViewById(R.id.weight)).getText().toString();
+        int weight = Integer.parseInt(Sweight);
         int height = Integer.parseInt(((EditText) findViewById(R.id.height)).getText().toString());
         int gain = 0;
-        /*
+
         if(((RadioButton)findViewById(R.id.lose)).isChecked()){
             gain = UserProfile.LOSE;
         }
@@ -74,13 +72,12 @@ public class UserProfileCreationActivity extends Activity{
             //error
         }
         int age = 10;
-       // UserProfile tempUser = new UserProfile(gender,age,weight,height,firstName,lastName
-        //,1,gain,true,UserProfile.IMPERIAL);
+        UserProfile tempUser = new UserProfile(gender,age,weight,height,firstName,lastName,1,gain,true,UserProfile.IMPERIAL);
 
         //set this
-        //((BruinFit) getApplication()).setUser(tempUser);
-      //  Toast.makeText(getApplicationContext(), "created User!", Toast.LENGTH_SHORT).show();
-        */
+        ((BruinFit) getApplication()).setUser(tempUser);
+        Toast.makeText(getApplicationContext(), "created User!", Toast.LENGTH_SHORT).show();
+
     }
 
     public void callEcho(View view) {
@@ -100,8 +97,8 @@ public class UserProfileCreationActivity extends Activity{
         intent.putExtra(HEIGHT, msgHeight);
         intent.putExtra(LAST, msgLast);
         intent.putExtra(FIRST, msgFirst);
-        ((BruinFit) this.getApplication()).getUser().setBasicProperties(Integer.getInteger("male"), age, Integer.getInteger(msgWeight),
-                Integer.getInteger(msgHeight), msgFirst, msgLast);
+       // ((BruinFit) this.getApplication()).getUser().setBasicProperties(Integer.getInteger("male"), age, Integer.getInteger(msgWeight),
+       //         Integer.getInteger(msgHeight), msgFirst, msgLast);
 
         testParse();
         startActivity(intent);
