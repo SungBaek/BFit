@@ -31,6 +31,19 @@ public class ChooseDiningHallActivity extends ActionBarActivity {
             }
         });
     }
+    public void populateData(View view){
+            final HashMap<String, Object> params = new HashMap<String, Object>();
+            params.put("movie", "The Matrix"); //why do I need this?
+            ParseCloud.callFunctionInBackground("populateDiningHallMenus", params, new FunctionCallback<Float>() {
+                @Override
+                public void done(Float ratings, ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(null, "it worked", Toast.LENGTH_SHORT);
+                    }
+                }
+            });
+    }
+
 
     public void openHedrick(View view){
         Intent intent = new Intent(this, PickFoodTypeActivity.class);
