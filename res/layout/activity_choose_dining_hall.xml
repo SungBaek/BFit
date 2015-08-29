@@ -7,83 +7,103 @@
     android:orientation="vertical"
     tools:context="com.example.joon8_000.myapplication.user.HomePageActivity">
 
-    <TextView android:text="Where are we eating?" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        <TextView android:text="Where are we eating?" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="testest"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="openHedrick"
+            android:background="@color/bright_foreground_material_dark"/>
+
+        <TextView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="populate dininghall"
+        android:text="Sproul"
         android:textSize="20dp"
         android:textAlignment="center"
         android:clickable="true"
-        android:onClick="populateData"
+        android:onClick="createUserProfile"
         android:background="@color/bright_foreground_material_dark"/>
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="De Neve"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:clickable="true"
-        android:onClick="viewUserProfile"
-        android:background="@color/bright_foreground_material_dark"/>
+        <TextView
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="Feast"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:clickable="true"
-        android:onClick="openAbout"
-        android:background="@color/bright_foreground_material_dark"/>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="clear database"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="destroyData"
+            android:background="@color/bright_foreground_material_dark"/>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="testest"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:clickable="true"
-        android:onClick="openHedrick"
-        android:background="@color/bright_foreground_material_dark"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="populate dininghall"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="populateData"
+            android:background="@color/bright_foreground_material_dark"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="De Neve"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="viewUserProfile"
+            android:background="@color/bright_foreground_material_dark"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Feast"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="openAbout"
+            android:background="@color/bright_foreground_material_dark"/>
+    </LinearLayout>
 
 
-    <TextView
-    android:layout_width="200dp"
-    android:layout_height="50dp"
-    android:layout_gravity="center"
-    android:layout_margin="10dp"
-    android:text="Sproul"
-    android:textSize="20dp"
-    android:textAlignment="center"
-    android:clickable="true"
-    android:onClick="createUserProfile"
-    android:background="@color/bright_foreground_material_dark"/>
-
-    <TextView
-
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="clear database"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:clickable="true"
-        android:onClick="destroyData"
-        android:background="@color/bright_foreground_material_dark"/>
 </LinearLayout>
