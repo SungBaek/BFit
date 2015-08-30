@@ -11,3 +11,13 @@ https://moqups.com/adkim5494@gmail.com/uIkzOhZw
 
 BMI Calculator reference
 http://www.webmd.com/diet/body-bmi-calculator
+
+Parser:
+-Add Parse-*.jar to libs folder
+-add the following to the build.gradle file under dependencies
+dependencies {
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    }
+
+
