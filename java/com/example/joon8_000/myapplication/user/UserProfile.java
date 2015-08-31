@@ -3,10 +3,6 @@ package com.example.joon8_000.myapplication.user;
 import com.example.joon8_000.myapplication.meallist.MealList;
 import com.example.joon8_000.myapplication.meallist.Nutrients;
 
-/**
- * Created by joon8_000 on 7/23/2015.
- */
-
 //USERTARGET
 public class UserProfile {
     //GENDER
@@ -75,6 +71,7 @@ public class UserProfile {
         this.goal = UserProfile.STAY;
         this.eatBreakfast = true;
         this.measurementSyst = UserProfile.IMPERIAL;
+
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
@@ -130,7 +127,7 @@ public class UserProfile {
 
     }
     public int calculateDaily(){
-        int base = 0;
+        int base;
         if (exercise == SEDENTARY)
             base = (int)Math.round(BMR * 1.2);
         else if (exercise == LIGHT)
@@ -242,6 +239,4 @@ public class UserProfile {
     public int getGoal() {return goal;}
     public int getMeasurementSyst() {return measurementSyst;}
     public boolean getEatBreakfast() {return eatBreakfast;}
-
-
 }
