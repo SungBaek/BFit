@@ -23,7 +23,7 @@ public class BruinFit extends Application {
     private UserProfile user;
 
     public void startMealList(MealList m){
-    //check if there is data, if not just end.
+        //check if there is data, if not just end.
 
     }
 
@@ -152,7 +152,7 @@ public class BruinFit extends Application {
         user.setWeight(sharedPreferences.getInt("weight", 0));
         user.setFirstName(sharedPreferences.getString("firstName", ""));
         user.setLastName(sharedPreferences.getString("lastName", ""));
-        user.setExercise(sharedPreferences.getInt("exercise", 0));
+        user.setExercise(sharedPreferences.getInt("exercise", user.MODERATE));
         user.setGoal(sharedPreferences.getInt("goal", user.STAY));
         user.setEatBreakfast(sharedPreferences.getBoolean("eatBreakfast", true));
         user.setMeasurementSyst(sharedPreferences.getInt("measurement", user.IMPERIAL));
@@ -177,11 +177,35 @@ public class BruinFit extends Application {
 
     public void loadMealList()
     {
+        SharedPreferences sharedPreferences = getSharedPreferences("User_Settings", Context.MODE_PRIVATE);
+        MealList ml = new MealList();
+        loadNutrients(ml.getTotalNutrients(), "mlTotalNutrients", sharedPreferences);
+        //loadMeals(ml.getMeals(), sharedPreferences);
 
     }
 
     public void loadNutrients(Nutrients n, String whichNutrients, SharedPreferences sp)
     {
+        n.calorie = sp.getInt(whichNutrients+"Cal",0);
+        n.totalFat = sp.getInt(whichNutrients+"TotalFat",0);
+        n.saturatedFat = sp.getInt(whichNutrients+"SaturatedFat",0);
+        n.transFat = sp.getInt(whichNutrients+"TransFat",0);
+        n.cholesterol = sp.getInt(whichNutrients+"Cholesterol",0);
+        n.sodium = sp.getInt(whichNutrients+"Sodium",0);
+        n.carbs = sp.getInt(whichNutrients+"Carbs",0);
+        n.fiber = sp.getInt(whichNutrients+"Fiber",0);
+        n.protein = sp.getInt(whichNutrients+"Protein",0);
+        n.sugar = sp.getInt(whichNutrients+"Sugar",0);
+
+        n.vitA = sp.getInt(whichNutrients+"VitA",0);
+        n.vitC = sp.getInt(whichNutrients+"VitC",0);
+        n.iron = sp.getInt(whichNutrients+"Iron",0);
+        n.calcium = sp.getInt(whichNutrients+"Calcium",0);
+    }
+
+    public void loadMeals()
+    {
 
     }
+
 }
