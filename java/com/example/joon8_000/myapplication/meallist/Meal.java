@@ -96,7 +96,7 @@ public class Meal {
     }
 
     public String getName() { return mealName; }
-    public int getFat() { return nutrients.totalFat; }
+    public double getFat() { return nutrients.totalFat; }
     public int getCalorie() {return nutrients.calorie; }
 
     public int getBrkCount() {

@@ -169,7 +169,7 @@ public class UserProfile {
         }
         else
             return -1;
-        dailyTarget.protein = dailyTarget.calorie * 0.225)/4;         // recommended
+        dailyTarget.protein = (dailyTarget.calorie * 0.225)/4;         // recommended
 
         // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
         dailyTarget.vitA = 100;

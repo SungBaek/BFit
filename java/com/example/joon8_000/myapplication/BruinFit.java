@@ -107,15 +107,15 @@ public class BruinFit extends Application {
     {
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(whichNutrients+"Cal", n.calorie);
-        editor.putFloat(whichNutrients + "TotalFat", n.totalFat);
-        editor.putFloat(whichNutrients + "SaturatedFat", n.saturatedFat);
-        editor.putFloat(whichNutrients + "TransFat", n.transFat);
-        editor.putFloat(whichNutrients + "Cholesterol", n.cholesterol);
-        editor.putFloat(whichNutrients + "Sodium", n.sodium);
-        editor.putFloat(whichNutrients + "Carbs", n.carbs);
-        editor.putFloat(whichNutrients + "Fiber", n.fiber);
-        editor.putFloat(whichNutrients + "Protein", n.protein);
-        editor.putFloat(whichNutrients + "Sugar", n.sugar);
+        editor.putFloat(whichNutrients + "TotalFat", (float) n.totalFat);
+        editor.putFloat(whichNutrients + "SaturatedFat", (float) n.saturatedFat);
+        editor.putFloat(whichNutrients + "TransFat", (float) n.transFat);
+        editor.putFloat(whichNutrients + "Cholesterol", (float) n.cholesterol);
+        editor.putFloat(whichNutrients + "Sodium", (float) n.sodium);
+        editor.putFloat(whichNutrients + "Carbs", (float) n.carbs);
+        editor.putFloat(whichNutrients + "Fiber", (float) n.fiber);
+        editor.putFloat(whichNutrients + "Protein", (float) n.protein);
+        editor.putFloat(whichNutrients + "Sugar", (float) n.sugar);
 
         editor.putInt(whichNutrients+"VitA", n.vitA);
         editor.putInt(whichNutrients+"VitC", n.vitC);
@@ -188,15 +188,15 @@ public class BruinFit extends Application {
     public void loadNutrients(Nutrients n, String whichNutrients, SharedPreferences sp)
     {
         n.calorie = sp.getInt(whichNutrients+"Cal",0);
-        n.totalFat = sp.getFloat(whichNutrients + "TotalFat", 0);
-        n.saturatedFat = sp.getFloat(whichNutrients + "SaturatedFat", 0);
-        n.transFat = sp.getFloat(whichNutrients + "TransFat", 0);
-        n.cholesterol = sp.getFloat(whichNutrients + "Cholesterol", 0);
-        n.sodium = sp.getFloat(whichNutrients + "Sodium", 0);
-        n.carbs = sp.getFloat(whichNutrients + "Carbs", 0);
-        n.fiber = sp.getFloat(whichNutrients + "Fiber", 0);
-        n.protein = sp.getFloat(whichNutrients + "Protein", 0);
-        n.sugar = sp.getFloat(whichNutrients + "Sugar", 0);
+        n.totalFat = (double)sp.getFloat(whichNutrients + "TotalFat", 0);
+        n.saturatedFat = (double)sp.getFloat(whichNutrients + "SaturatedFat", 0);
+        n.transFat = (double)sp.getFloat(whichNutrients + "TransFat", 0);
+        n.cholesterol = (double)sp.getFloat(whichNutrients + "Cholesterol", 0);
+        n.sodium = (double)sp.getFloat(whichNutrients + "Sodium", 0);
+        n.carbs = (double)sp.getFloat(whichNutrients + "Carbs", 0);
+        n.fiber = (double)sp.getFloat(whichNutrients + "Fiber", 0);
+        n.protein = (double)sp.getFloat(whichNutrients + "Protein", 0);
+        n.sugar = (double)sp.getFloat(whichNutrients + "Sugar", 0);
 
         n.vitA = sp.getInt(whichNutrients+"VitA",0);
         n.vitC = sp.getInt(whichNutrients+"VitC",0);
