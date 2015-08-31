@@ -117,6 +117,8 @@ public class UserProfileCreationActivity extends Activity{
         user.setGoal(sharedPreferences.getInt("goal", user.STAY));
         user.setEatBreakfast(sharedPreferences.getBoolean("eatBreakfast", true));
         user.setMeasurementSyst(sharedPreferences.getInt("measurement", user.IMPERIAL));
+        user.calcBMR();
+        user.calculateTarget();
 
         if (user.getAge() == 0 || user.getWeight() == 0 || user.getFirstName().equals("") || user.getLastName().equals(""))
         {

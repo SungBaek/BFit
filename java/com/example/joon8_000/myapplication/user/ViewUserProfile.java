@@ -49,12 +49,11 @@ public class ViewUserProfile extends Activity {
             exercise = "Error";
 
         String eatBreakfast = "";
-        if (tempUser.getEatBreakfast() == true)
+        if (tempUser.getEatBreakfast())
             eatBreakfast = "Yes";
-        else if (tempUser.getEatBreakfast() == false)
-            eatBreakfast = "No";
         else
-            eatBreakfast = "Error";
+            eatBreakfast = "No";
+
 
         String goal = "";
         if (tempUser.getGoal() == UserProfile.LOSE)
