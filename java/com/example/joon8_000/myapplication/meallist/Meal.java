@@ -123,6 +123,33 @@ public class Meal {
         return canEat;
     }
 
+    public void setBrkCount(int brkCount) {
+        this.brkCount = brkCount;
+    }
+
+    public void setLunchCount(int lunchCount) {
+        this.lunchCount = lunchCount;
+    }
+
+    public void setDinnerCount(int dinnerCount) {
+        this.dinnerCount = dinnerCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
+    }
+
+    public void setNutrients(Nutrients nutrients) {
+        this.nutrients = nutrients;
+    }
+
     public void setCanEat(boolean canEat) { this.canEat= canEat; }
     public boolean getCanEat() { return this.canEat; }
-    public Nutrients getNutrients() { return this.nutrients; }}
+    public Nutrients getNutrients() { return this.nutrients; }
+
+}
+

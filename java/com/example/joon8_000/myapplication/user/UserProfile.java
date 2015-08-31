@@ -163,12 +163,12 @@ public class UserProfile {
         else
             return -1;
 
-        dailyTarget.totalFat = (int)Math.round(((double)dailyTarget.calorie * 0.275)/9);        // recommended
-        dailyTarget.saturatedFat = (int)(Math.round(((double)dailyTarget.calorie * 0.10)/9));   // max
+        dailyTarget.totalFat = (dailyTarget.calorie * 0.275)/9;        // recommended
+        dailyTarget.saturatedFat = (dailyTarget.calorie * 0.10)/9;   // max
         dailyTarget.transFat = 1;                                                               // max
         dailyTarget.cholesterol = 300;                                                          // max
         dailyTarget.sodium = 2300;                                                              // max
-        dailyTarget.carbs = (int)Math.round(((double)dailyTarget.calorie * 0.55)/4);            // recommended
+        dailyTarget.carbs = (dailyTarget.calorie * 0.55)/4;            // recommended
         if (gender == MALE) {
             dailyTarget.fiber = 31;                                                             // recommended
             dailyTarget.sugar = 36;                                                             // max
@@ -179,7 +179,7 @@ public class UserProfile {
         }
         else
             return -1;
-        dailyTarget.protein = (int)Math.round(((double)dailyTarget.calorie * 0.225)/4);         // recommended
+        dailyTarget.protein = dailyTarget.calorie * 0.225)/4;         // recommended
 
         // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
         dailyTarget.vitA = 100;
@@ -193,15 +193,15 @@ public class UserProfile {
     // calculate proportion of meal's nutrition based on daily total
     public void setMealsTarget(Nutrients n, double percentage) {
         n.calorie = (int)Math.round(percentage * dailyTarget.calorie);
-        n.totalFat = (int)Math.round(percentage * dailyTarget.totalFat);
-        n.saturatedFat = (int)Math.round(percentage * dailyTarget.saturatedFat);
-        n.transFat = (int)Math.round(percentage * dailyTarget.transFat);
-        n.cholesterol = (int)Math.round(percentage * dailyTarget.cholesterol);
-        n.sodium = (int)Math.round(percentage * dailyTarget.sodium);
-        n.carbs = (int)Math.round(percentage * dailyTarget.carbs);
-        n.fiber = (int)Math.round(percentage * dailyTarget.fiber);
-        n.sugar = (int)Math.round(percentage * dailyTarget.sugar);
-        n.protein = (int)Math.round(percentage * dailyTarget.protein);
+        n.totalFat = percentage * dailyTarget.totalFat;
+        n.saturatedFat = percentage * dailyTarget.saturatedFat;
+        n.transFat = percentage * dailyTarget.transFat;
+        n.cholesterol = percentage * dailyTarget.cholesterol;
+        n.sodium = percentage * dailyTarget.sodium;
+        n.carbs = percentage * dailyTarget.carbs;
+        n.fiber = percentage * dailyTarget.fiber;
+        n.sugar = percentage * dailyTarget.sugar;
+        n.protein = percentage * dailyTarget.protein;
         n.vitA = (int)Math.round(percentage * dailyTarget.vitA);
         n.vitC = (int)Math.round(percentage * dailyTarget.vitC);
         n.calcium = (int)Math.round(percentage * dailyTarget.calcium);

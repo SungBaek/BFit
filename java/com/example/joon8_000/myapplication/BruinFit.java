@@ -107,15 +107,15 @@ public class BruinFit extends Application {
     {
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(whichNutrients+"Cal", n.calorie);
-        editor.putInt(whichNutrients+"TotalFat", n.totalFat);
-        editor.putInt(whichNutrients+"SaturatedFat", n.saturatedFat);
-        editor.putInt(whichNutrients+"TransFat", n.transFat);
-        editor.putInt(whichNutrients+"Cholesterol", n.cholesterol);
-        editor.putInt(whichNutrients+"Sodium", n.sodium);
-        editor.putInt(whichNutrients+"Carbs", n.carbs);
-        editor.putInt(whichNutrients+"Fiber", n.fiber);
-        editor.putInt(whichNutrients+"Protein", n.protein);
-        editor.putInt(whichNutrients+"Sugar", n.sugar);
+        editor.putFloat(whichNutrients + "TotalFat", n.totalFat);
+        editor.putFloat(whichNutrients + "SaturatedFat", n.saturatedFat);
+        editor.putFloat(whichNutrients + "TransFat", n.transFat);
+        editor.putFloat(whichNutrients + "Cholesterol", n.cholesterol);
+        editor.putFloat(whichNutrients + "Sodium", n.sodium);
+        editor.putFloat(whichNutrients + "Carbs", n.carbs);
+        editor.putFloat(whichNutrients + "Fiber", n.fiber);
+        editor.putFloat(whichNutrients + "Protein", n.protein);
+        editor.putFloat(whichNutrients + "Sugar", n.sugar);
 
         editor.putInt(whichNutrients+"VitA", n.vitA);
         editor.putInt(whichNutrients+"VitC", n.vitC);
@@ -129,6 +129,7 @@ public class BruinFit extends Application {
     {
         int size = m.size();
         SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("mList_size", size);
         for (int i = 0; i < size; i++)
         {
             editor.putInt("mList_"+i+"_totalCount", m.get(i).getTotalCount());
@@ -180,22 +181,22 @@ public class BruinFit extends Application {
         SharedPreferences sharedPreferences = getSharedPreferences("User_Settings", Context.MODE_PRIVATE);
         MealList ml = new MealList();
         loadNutrients(ml.getTotalNutrients(), "mlTotalNutrients", sharedPreferences);
-        //loadMeals(ml.getMeals(), sharedPreferences);
+        loadMeals(ml.getMeals(), sharedPreferences);
 
     }
 
     public void loadNutrients(Nutrients n, String whichNutrients, SharedPreferences sp)
     {
         n.calorie = sp.getInt(whichNutrients+"Cal",0);
-        n.totalFat = sp.getInt(whichNutrients+"TotalFat",0);
-        n.saturatedFat = sp.getInt(whichNutrients+"SaturatedFat",0);
-        n.transFat = sp.getInt(whichNutrients+"TransFat",0);
-        n.cholesterol = sp.getInt(whichNutrients+"Cholesterol",0);
-        n.sodium = sp.getInt(whichNutrients+"Sodium",0);
-        n.carbs = sp.getInt(whichNutrients+"Carbs",0);
-        n.fiber = sp.getInt(whichNutrients+"Fiber",0);
-        n.protein = sp.getInt(whichNutrients+"Protein",0);
-        n.sugar = sp.getInt(whichNutrients+"Sugar",0);
+        n.totalFat = sp.getFloat(whichNutrients + "TotalFat", 0);
+        n.saturatedFat = sp.getFloat(whichNutrients + "SaturatedFat", 0);
+        n.transFat = sp.getFloat(whichNutrients + "TransFat", 0);
+        n.cholesterol = sp.getFloat(whichNutrients + "Cholesterol", 0);
+        n.sodium = sp.getFloat(whichNutrients + "Sodium", 0);
+        n.carbs = sp.getFloat(whichNutrients + "Carbs", 0);
+        n.fiber = sp.getFloat(whichNutrients + "Fiber", 0);
+        n.protein = sp.getFloat(whichNutrients + "Protein", 0);
+        n.sugar = sp.getFloat(whichNutrients + "Sugar", 0);
 
         n.vitA = sp.getInt(whichNutrients+"VitA",0);
         n.vitC = sp.getInt(whichNutrients+"VitC",0);
@@ -203,8 +204,21 @@ public class BruinFit extends Application {
         n.calcium = sp.getInt(whichNutrients+"Calcium",0);
     }
 
-    public void loadMeals()
+    public void loadMeals(ArrayList<Meal> m, SharedPreferences sp)
     {
+        SharedPreferences.Editor editor = sp.edit();
+        int size = sp.getInt("mList_size", 0);
+
+        for (int i = size; i > 0; i--)
+        {
+            m.get(i).setTotalCount(sp.getInt("mList_" + i + "_totalCount", 0));
+            editor.putString("mList_" + i + "_mealName", m.get(i).getMealName());
+            editor.putBoolean("mList_"+i+"_canEat", m.get(i).getCanEat());
+            editor.apply();
+
+            saveNutrients(m.get(i).getNutrients(), "mList_"+i+"_meal_nut", sp);
+        }
+        editor.apply();
 
     }
 
