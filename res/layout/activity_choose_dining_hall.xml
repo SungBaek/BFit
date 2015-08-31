@@ -17,7 +17,7 @@
         android:gravity="center" >
 
         <TextView
-            android:text="&quot;Where Are We Eating?&quot;"
+            android:text="Where Are We Eating?"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,52 +28,56 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center">
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="populate dininghall"
-                android:id="@+id/button"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/populate"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="populateData"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/populate" />
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="De Neve"
-                android:id="@+id/button2"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/de_neve"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="openHedrick"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/de_neve" />
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="FEAST"
-                android:id="@+id/button3"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/feast"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="openHedrick"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/feast" />
 
         </LinearLayout>
 
@@ -83,47 +87,47 @@
             android:layout_height="match_parent"
             android:gravity="center">
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="CLEAR DATA"
-                android:id="@+id/button4"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/clear_data"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="destroyData"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/clear" />
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="&quot;Test&quot; Kitchen"
-                android:id="@+id/button5"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/test"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="openHedrick"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/test" />
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:text="B-Plate"
-                android:id="@+id/button6"
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/b_plate"
                 android:textSize="20dp"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:onClick="openHedrick"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/bright_foreground_material_dark" />
+                android:background="@color/bright_foreground_material_dark"
+                android:gravity="center"
+                android:id="@+id/bplate" />
         </LinearLayout>
 
     </LinearLayout>
