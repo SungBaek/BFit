@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.joon8_000.myapplication.R;
-import com.example.joon8_000.myapplication.user.UserProfile;
 
 import java.util.ArrayList;
 
@@ -30,6 +29,17 @@ public class MealAdapter extends ArrayAdapter<Meal> {
         mealName.setText(meal.getName());
 
         return convertView;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        Meal m = getItem(position);
+        return m.getCanEat();
 
     }
 }

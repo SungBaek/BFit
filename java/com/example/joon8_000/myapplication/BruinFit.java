@@ -35,7 +35,7 @@ public class BruinFit extends Application {
     }
     public void setMealList(int time) {
         //int might eventually be used depends
-        this.mealList = new MealList(getUser().getTarget(UserProfile.DAILY));
+        this.mealList = new MealList();
 
     }
 

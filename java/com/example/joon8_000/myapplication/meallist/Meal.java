@@ -100,5 +100,5 @@ public class Meal {
     public int getCalorie() {return nutrients.calorie; }
 
     public void setCanEat(boolean canEat) { this.canEat= canEat; }
-    public boolean getCatEat() { return this.canEat; }
+    public boolean getCanEat() { return this.canEat; }
     public Nutrients getNutrients() { return this.nutrients; }}

@@ -1,5 +1,6 @@
 package com.example.joon8_000.myapplication.meallist;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -71,17 +72,17 @@ public class PickFoodTypeActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new OnItemClickListener(){
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
-
                 Meal m = (Meal) parent.getItemAtPosition(position);
-              //  String item = ((TextView)view).getText().toString();
-                //Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
-                Toast.makeText(getBaseContext(), m.getName(), Toast.LENGTH_LONG).show();
+                MealList ml = ((BruinFit) getApplication()).getMeal();
+                UserProfile u = ((BruinFit) getApplication()).getUser();
 
+                Toast.makeText(getBaseContext(), m.getName(), Toast.LENGTH_LONG).show();
+                m.eatThis(ml, UserProfile.DAILY);
+                ml.calcEateries(u, UserProfile.DAILY);
+                view.setBackgroundColor(Color.BLUE);
             }
         });
       //  ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>

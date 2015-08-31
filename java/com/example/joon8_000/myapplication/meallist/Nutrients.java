@@ -35,8 +35,25 @@ public class Nutrients {
         sugar = 0;
         // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
         vitA = 0;
-       vitC = 0;
-       iron = 0;
-       calcium = 0;
+        vitC = 0;
+        iron = 0;
+        calcium = 0;
+    }
+
+    public void addNutrients(Nutrients n){
+        this.calorie += n.calorie;
+        this.totalFat += n.totalFat;
+        this.saturatedFat += n.saturatedFat;
+        this.transFat += n.transFat;
+        this.cholesterol += n.cholesterol;
+        this.sodium += n.sodium;
+        this.carbs += n.sodium;
+        this.fiber += n.fiber;
+        this.protein += n.protein;
+        this.sugar += n.sugar;
+        this.vitA += n.vitA;
+        this.vitC += n.vitC;
+        this.iron += n.iron;
+        this.calcium += n.calcium;
     }
 }

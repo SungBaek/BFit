@@ -28,13 +28,9 @@ import java.util.Map;
  */
 public class MealList {
 
-    protected int size;
     protected ArrayList<Meal> meals;
-    protected Nutrients userTarget;
-    private UserProfile userProfile;
-    
-    int totalFat;
-    int totalCalorie;
+
+    Nutrients totalNutrients;
     //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
 
     public String[] printTen(){
@@ -46,21 +42,17 @@ public class MealList {
     }
 
     //get all objects and save it into the hash map.
-    public MealList(Nutrients userTarget)    {
-        //TODO:eventaully add a variable here for dining hall
-        this.userTarget = userTarget;
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
-        totalFat = 0;
-        totalCalorie = 0;
-
-        this.meals = new ArrayList<>();
+    public MealList()    {
+       //TODO:eventaully add a variable here for dining hall
+       ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
+       totalNutrients = new Nutrients();
+       this.meals = new ArrayList<>();
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
            for (ParseObject e : list){
                meals.add(objectParser(e));
            }
-
        }
        catch (ParseException e) { //failed to retrieve with given query
             Log.e("meallist", "Failed to find any objects");
@@ -73,9 +65,7 @@ public class MealList {
         //for each meal get the total fat and total calorie already eaten.
         //iterate through every entry and add them all
         for(Meal e : meals) {
-
-            totalFat += e.getFat()*e.getCount(foodTime);
-            totalCalorie += e.getCalorie()*e.getCount(foodTime);
+            totalNutrients.addNutrients(e.getNutrients());
         }
     }
     //helper function for parsing parseobject
@@ -112,8 +102,8 @@ public class MealList {
     {
         for(Meal chosenMeal : meals) {
             //go through every elements in meals then see if nutrientvalue + current >= maxallowed.
-            if (chosenMeal.getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalCalorie
-                    || chosenMeal.getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - this.totalFat) {
+            if (chosenMeal.getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalNutrients.calorie
+                    || chosenMeal.getNutrients().totalFat > userProfile.getTarget(foodTime).totalFat - this.totalNutrients.totalFat) {
                 chosenMeal.setCanEat(false);
             }
             else
@@ -125,13 +115,23 @@ public class MealList {
 
     //returns null if it doesn't work
     //TODO: return a dummy meal if it doesn't work??
-    public Meal getMeal(String s) { return meals.get(1); }
+    public Meal getMeal(String s) {
+        for (Meal e : this.meals){
+            if (e.getName() == s){
+                return e;
+            }
+        }
+        //couldn't find it, return a dummy meal?
+        Nutrients tempN = new Nutrients();
+        Meal temp = new Meal("dummy", tempN);
+        return temp;
+    }
     public ArrayList<Meal> getMeals()
     { return meals; }
     public void addCalorie(int calorie){
-        this.totalCalorie += calorie;
+        this.totalNutrients.calorie += calorie;
     }
     public void addFat(int fat){
-        this.totalFat += fat;
+        this.totalNutrients.totalFat += fat;
     }
 }
