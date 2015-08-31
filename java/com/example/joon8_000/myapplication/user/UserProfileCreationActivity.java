@@ -1,11 +1,12 @@
 package com.example.joon8_000.myapplication.user;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,13 +23,14 @@ import java.util.HashMap;
 /**
  * Created by joon8_000 on 8/2/2015.
  */
-public class UserProfileCreationActivity extends Activity{
+
+public class UserProfileCreationActivity extends AppCompatActivity {
     public final static String GENDER = "com.example.joon8_000.myapplication.User.GENDER";
     public final static String WEIGHT = "com.example.joon8_000.myapplication.User.WEIGHT";
     public final static String HEIGHT = "com.example.joon8_000.myapplication.User.HEIGHT";
     public final static String LAST = "com.example.joon8_000.myapplication.User.LAST";
     public final static String FIRST = "com.example.joon8_000.myapplication.User.FIRST";
-
+    private Toolbar toolbar;
 
     public void testParse() {
         final HashMap<String, Object> params = new HashMap<String, Object>();
@@ -159,6 +161,10 @@ public class UserProfileCreationActivity extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_profile_user);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
