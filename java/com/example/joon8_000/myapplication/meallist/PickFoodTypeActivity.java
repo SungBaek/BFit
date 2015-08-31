@@ -80,10 +80,8 @@ public class PickFoodTypeActivity extends AppCompatActivity {
 
         totalCalorie.setText(String.valueOf(iTotalCalorie));
         eatenCalorie.setText(String.valueOf(iEatenCalorie));
-        
         //listview intialization
         ArrayList<Meal> meals = ((BruinFit) getApplication()).getMeal().getMeals();
-
         //custom adapter
         MealAdapter adapter = new MealAdapter(this, meals);
 

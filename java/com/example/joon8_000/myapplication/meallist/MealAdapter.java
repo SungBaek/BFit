@@ -24,7 +24,9 @@ public class MealAdapter extends ArrayAdapter<Meal> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_meal, parent, false);
         }
         TextView mealName = (TextView) convertView.findViewById(R.id.mealName);
+        TextView calorie = (TextView) convertView.findViewById(R.id.hmm);
         mealName.setText(meal.getName());
+        calorie.setText(String.valueOf(meal.getCalorie()));
         convertView.setBackgroundColor(Color.YELLOW);
         return convertView;
     }

@@ -71,23 +71,23 @@ public class MealList {
         Meal m;
         Nutrients nutrient = new Nutrients();
         //calorie
-        nutrient.calorie = e.getInt("calorie"); // data are stored as an array of size 1
+        nutrient.calorie = Integer.parseInt(e.getString("calorie")); // data are stored as an array of size 1
         //totalfat
-        nutrient.totalFat = e.getInt("totFat");
+        nutrient.totalFat = Double.parseDouble(e.getString("totFat"));
         //saturatedfat
-        nutrient.saturatedFat = e.getInt("satFat");
+        nutrient.saturatedFat = Double.parseDouble(e.getString("satFat"));
         //transfat
-        nutrient.transFat = e.getInt("transFat");
+        nutrient.transFat = Double.parseDouble(e.getString("transFat"));
         //cholesterol
-        nutrient.cholesterol = e.getInt("chol");
+        nutrient.cholesterol = Double.parseDouble(e.getString("chol"));
         //sodium
-        nutrient.sodium = e.getInt("sod");
+        nutrient.sodium = Double.parseDouble(e.getString("sod"));
         //fiber
-        nutrient.fiber = e.getInt("fiber");
+        nutrient.fiber = Double.parseDouble(e.getString("fiber"));
         //protein.
-        nutrient.protein = e.getInt("protein");
+        nutrient.protein = Double.parseDouble(e.getString("protein"));
         //sugar
-        nutrient.sugar = e.getInt("sugar");
+        nutrient.sugar = Double.parseDouble(e.getString("sugar"));
         //name
         String name = e.getString("name");
 
@@ -131,7 +131,7 @@ public class MealList {
     public void addCalorie(int calorie){
         this.totalNutrients.calorie += calorie;
     }
-    public void addFat(int fat){
+    public void addFat(double fat){
         this.totalNutrients.totalFat += fat;
     }
     public Nutrients getTotalNutrients(){
