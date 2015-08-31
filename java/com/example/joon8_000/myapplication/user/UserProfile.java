@@ -3,6 +3,10 @@ package com.example.joon8_000.myapplication.user;
 import com.example.joon8_000.myapplication.meallist.MealList;
 import com.example.joon8_000.myapplication.meallist.Nutrients;
 
+/**
+ * Created by joon8_000 on 7/23/2015.
+ */
+
 //USERTARGET
 public class UserProfile {
     //GENDER
@@ -61,22 +65,16 @@ public class UserProfile {
 
     //constructor
     public UserProfile(){
-        this.gender = UserProfile.MALE;
+       this.gender = UserProfile.MALE;
         this.age = 10;
         this.weight = 130;
         this.height = 20;
         this.firstName = "smith";
         this.lastName = "jake";
-        this.exercise = UserProfile.ACTIVE;
+        this.exercise = 1;
         this.goal = UserProfile.STAY;
         this.eatBreakfast = true;
         this.measurementSyst = UserProfile.IMPERIAL;
-        brkTarget = new Nutrients();
-        lunchTarget = new Nutrients();
-        dinnerTarget = new Nutrients();
-        dailyTarget = new Nutrients();
-        calcBMR();
-        calculateTarget();
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
@@ -90,14 +88,6 @@ public class UserProfile {
         this.goal = goal;
         this.eatBreakfast = eatBreakfast;
         this.measurementSyst = measurementSyst;
-
-        brkTarget = new Nutrients();
-        lunchTarget = new Nutrients();
-        dinnerTarget = new Nutrients();
-        dailyTarget = new Nutrients();
-
-        calcBMR();
-        calculateTarget();
 
     }
 
@@ -140,7 +130,7 @@ public class UserProfile {
 
     }
     public int calculateDaily(){
-        int base;
+        int base = 0;
         if (exercise == SEDENTARY)
             base = (int)Math.round(BMR * 1.2);
         else if (exercise == LIGHT)
@@ -252,4 +242,6 @@ public class UserProfile {
     public int getGoal() {return goal;}
     public int getMeasurementSyst() {return measurementSyst;}
     public boolean getEatBreakfast() {return eatBreakfast;}
+
+
 }
