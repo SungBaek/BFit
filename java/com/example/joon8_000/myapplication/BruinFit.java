@@ -133,7 +133,7 @@ public class BruinFit extends Application {
         {
             editor.putInt("mList_"+i+"_totalCount", m.get(i).getTotalCount());
             editor.putString("mList_" + i + "_mealName", m.get(i).getMealName());
-            editor.putBoolean("mList_"+i+"_canEat", m.get(i).getCatEat());
+            editor.putBoolean("mList_"+i+"_canEat", m.get(i).getCanEat());
             editor.apply();
 
             saveNutrients(m.get(i).getNutrients(), "mList_"+i+"_meal_nut", sp);

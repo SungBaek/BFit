@@ -42,12 +42,10 @@ public class MealList {
 
     //get all objects and save it into the hash map.
     public MealList()    {
-
        //TODO:eventaully add a variable here for dining hall
        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
        this.totalNutrients = new Nutrients();
        this.meals = new ArrayList<>();
-
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
@@ -58,7 +56,6 @@ public class MealList {
        catch (ParseException e) { //failed to retrieve with given query
             Log.e("meallist", "Failed to find any objects");
        }
-
     }
 
     //helper function for calculating total

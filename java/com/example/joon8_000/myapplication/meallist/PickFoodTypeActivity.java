@@ -75,13 +75,12 @@ public class PickFoodTypeActivity extends AppCompatActivity {
         TextView totalCalorie = (TextView) findViewById(R.id.totalCalorie);
         TextView eatenCalorie = (TextView) findViewById(R.id.eatenCalorie);
 
-        int iEatenCalorie = ((BruinFit) getApplication()).getUser().getTarget(UserProfile.DAILY).calorie;
-        int iTotalCalorie = ((BruinFit) getApplication()).getMeal().getTotalNutrients().calorie;
+        int iTotalCalorie = ((BruinFit) getApplication()).getUser().getTarget(UserProfile.DAILY).calorie;
+        int iEatenCalorie = ((BruinFit) getApplication()).getMeal().getMeals().get(1).getCalorie();
 
         totalCalorie.setText(String.valueOf(iTotalCalorie));
         eatenCalorie.setText(String.valueOf(iEatenCalorie));
-
-
+        
         //listview intialization
         ArrayList<Meal> meals = ((BruinFit) getApplication()).getMeal().getMeals();
 
@@ -113,13 +112,8 @@ public class PickFoodTypeActivity extends AppCompatActivity {
 
                 totalCalorie.setText(String.valueOf(iTotalCalorie));
                 eatenCalorie.setText(String.valueOf(iEatenCalorie));
-
             }
         });
-      //  ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>
-      // (this, android.R.layout.simple_list_item_1, codeLearnChapters);
-      //  ListView codeLearnLessons = (ListView)findViewById(R.id.listview);
-      //  codeLearnLessons.setAdapter(codeLearnArrayAdapter);
     }
 
     @Override

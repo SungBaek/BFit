@@ -77,9 +77,6 @@ public class UserProfileCreationActivity extends AppCompatActivity {
         }
         int age = 10;
         UserProfile tempUser = new UserProfile(gender,age,weight,height,firstName,lastName,1,gain,true,UserProfile.IMPERIAL);
-
-        saveProfile(tempUser);
-
         //set this
         ((BruinFit) getApplication()).setUser(tempUser);
         Toast.makeText(getApplicationContext(), "Created User!", Toast.LENGTH_SHORT).show();
