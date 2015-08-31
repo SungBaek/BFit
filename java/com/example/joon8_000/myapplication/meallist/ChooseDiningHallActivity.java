@@ -1,16 +1,14 @@
 package com.example.joon8_000.myapplication.meallist;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.joon8_000.myapplication.R;
-import com.example.joon8_000.myapplication.user.UserProfileCreationEchoActivity;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
@@ -53,8 +51,8 @@ public class ChooseDiningHallActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_dining_hall);
 
+        setContentView(R.layout.activity_choose_dining_hall);
 
     }
 

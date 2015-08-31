@@ -85,6 +85,8 @@ public class UserProfile {
         this.goal = goal;
         this.eatBreakfast = eatBreakfast;
         this.measurementSyst = measurementSyst;
+        calcBMR();
+        calculateTarget();
 
     }
 

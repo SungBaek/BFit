@@ -1,20 +1,20 @@
 package com.example.joon8_000.myapplication.meallist;
 
+
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.internal.widget.AdapterViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.joon8_000.myapplication.BruinFit;
 import com.example.joon8_000.myapplication.R;
@@ -30,6 +30,8 @@ import java.util.Vector;
 public class PickFoodTypeActivity extends AppCompatActivity {
     //TODO: create custom adapters for meal Class.
     //TODO: set onitemlistener for interactions.
+
+    private Toolbar mToolbar;
 
     //test function
     public void testParseQuery(){
@@ -62,6 +64,9 @@ public class PickFoodTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_food_type);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         createMeal();
         testMealList();
         ArrayList<Meal> meals = ((BruinFit) getApplication()).getMeal().getMeals();
