@@ -28,11 +28,10 @@ import java.util.Map;
  */
 public class MealList {
 
-    protected int size;
     protected ArrayList<Meal> meals;
-    protected Nutrients userTarget;
-    private UserProfile userProfile;
-    
+
+    protected Nutrients totalNutrients;
+
     int totalFat;
     int totalCalorie;
     //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
@@ -46,9 +45,9 @@ public class MealList {
     }
 
     //get all objects and save it into the hash map.
-    public MealList(Nutrients userTarget)    {
+    public MealList()    {
         //TODO:eventaully add a variable here for dining hall
-        this.userTarget = userTarget;
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
         totalFat = 0;
         totalCalorie = 0;
@@ -134,4 +133,5 @@ public class MealList {
     public void addFat(int fat){
         this.totalFat += fat;
     }
+    public Nutrients getTotalNutrients() {return totalNutrients;}
 }

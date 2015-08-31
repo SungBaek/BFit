@@ -1,9 +1,7 @@
 package com.example.joon8_000.myapplication.user;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -76,61 +74,12 @@ public class UserProfileCreationActivity extends Activity{
         int age = 10;
         UserProfile tempUser = new UserProfile(gender,age,weight,height,firstName,lastName,1,gain,true,UserProfile.IMPERIAL);
 
-        saveProfile(tempUser);
-
         //set this
         ((BruinFit) getApplication()).setUser(tempUser);
-        Toast.makeText(getApplicationContext(), "created User!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Created User!", Toast.LENGTH_SHORT).show();
 
     }
 
-    public void saveProfile(UserProfile user)
-    {
-
-        SharedPreferences sharedPreferences = getSharedPreferences("myData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("gender", user.getGender());
-        editor.putInt("age", user.getAge());
-        editor.putInt("weight", user.getWeight());
-        editor.putInt("height", user.getHeight());
-        editor.putString("firstName", user.getFirstName());
-        editor.putString("lastName", user.getLastName());
-        editor.putInt("exercise", user.getExercise());
-        editor.putInt("goal", user.getGoal());
-        editor.putBoolean("eatBreakfast", user.getEatBreakfast());
-        editor.putInt("measurement", user.getMeasurementSyst());
-
-        editor.commit();
-
-    }
-
-    public void loadProfile(View view)
-    {
-        UserProfile user = new UserProfile();
-        SharedPreferences sharedPreferences = getSharedPreferences("myData", Context.MODE_PRIVATE);
-        user.setGender(sharedPreferences.getInt("gender", user.MALE));
-        user.setAge(sharedPreferences.getInt("age", 0));
-        user.setWeight(sharedPreferences.getInt("weight", 0));
-        user.setFirstName(sharedPreferences.getString("firstName", ""));
-        user.setLastName(sharedPreferences.getString("lastName", ""));
-        user.setExercise(sharedPreferences.getInt("exercise", 0));
-        user.setGoal(sharedPreferences.getInt("goal", user.STAY));
-        user.setEatBreakfast(sharedPreferences.getBoolean("eatBreakfast", true));
-        user.setMeasurementSyst(sharedPreferences.getInt("measurement", user.IMPERIAL));
-        user.calcBMR();
-        user.calculateTarget();
-
-        if (user.getAge() == 0 || user.getWeight() == 0 || user.getFirstName().equals("") || user.getLastName().equals(""))
-        {
-            Toast.makeText(this, "No user data was found", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            ((BruinFit) getApplication()).setUser(user);
-            Toast.makeText(this, "Data was loaded successfully!", Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     public void callEcho(View view) {
         Intent intent = new Intent(this, UserProfileCreationEchoActivity.class);

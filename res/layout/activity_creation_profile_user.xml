@@ -106,12 +106,5 @@
         android:layout_marginTop="20dp"
         android:onClick="createUser"/>
 
-    <Button
-        android:id="@+id/load_user_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/load_user_profile"
-        android:onClick="loadProfile"/>
 
 </LinearLayout>
