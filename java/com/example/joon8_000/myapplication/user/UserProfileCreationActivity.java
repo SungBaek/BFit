@@ -1,11 +1,12 @@
 package com.example.joon8_000.myapplication.user;
 
-import android.app.Activity;
 import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,13 +23,14 @@ import java.util.HashMap;
 /**
  * Created by joon8_000 on 8/2/2015.
  */
-public class UserProfileCreationActivity extends Activity{
+
+public class UserProfileCreationActivity extends AppCompatActivity {
     public final static String GENDER = "com.example.joon8_000.myapplication.User.GENDER";
     public final static String WEIGHT = "com.example.joon8_000.myapplication.User.WEIGHT";
     public final static String HEIGHT = "com.example.joon8_000.myapplication.User.HEIGHT";
     public final static String LAST = "com.example.joon8_000.myapplication.User.LAST";
     public final static String FIRST = "com.example.joon8_000.myapplication.User.FIRST";
-
+    private Toolbar toolbar;
 
     public void testParse() {
         final HashMap<String, Object> params = new HashMap<String, Object>();
@@ -80,57 +82,10 @@ public class UserProfileCreationActivity extends Activity{
 
         //set this
         ((BruinFit) getApplication()).setUser(tempUser);
-        Toast.makeText(getApplicationContext(), "created User!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Created User!", Toast.LENGTH_SHORT).show();
 
     }
 
-    public void saveProfile(UserProfile user)
-    {
-
-        SharedPreferences sharedPreferences = getSharedPreferences("myData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("gender", user.getGender());
-        editor.putInt("age", user.getAge());
-        editor.putInt("weight", user.getWeight());
-        editor.putInt("height", user.getHeight());
-        editor.putString("firstName", user.getFirstName());
-        editor.putString("lastName", user.getLastName());
-        editor.putInt("exercise", user.getExercise());
-        editor.putInt("goal", user.getGoal());
-        editor.putBoolean("eatBreakfast", user.getEatBreakfast());
-        editor.putInt("measurement", user.getMeasurementSyst());
-
-        editor.commit();
-
-    }
-
-    public void loadProfile(View view)
-    {
-        UserProfile user = new UserProfile();
-        SharedPreferences sharedPreferences = getSharedPreferences("myData", Context.MODE_PRIVATE);
-        user.setGender(sharedPreferences.getInt("gender", user.MALE));
-        user.setAge(sharedPreferences.getInt("age", 0));
-        user.setWeight(sharedPreferences.getInt("weight", 0));
-        user.setFirstName(sharedPreferences.getString("firstName", ""));
-        user.setLastName(sharedPreferences.getString("lastName", ""));
-        user.setExercise(sharedPreferences.getInt("exercise", 0));
-        user.setGoal(sharedPreferences.getInt("goal", user.STAY));
-        user.setEatBreakfast(sharedPreferences.getBoolean("eatBreakfast", true));
-        user.setMeasurementSyst(sharedPreferences.getInt("measurement", user.IMPERIAL));
-        user.calcBMR();
-        user.calculateTarget();
-
-        if (user.getAge() == 0 || user.getWeight() == 0 || user.getFirstName().equals("") || user.getLastName().equals(""))
-        {
-            Toast.makeText(this, "No user data was found", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            ((BruinFit) getApplication()).setUser(user);
-            Toast.makeText(this, "Data was loaded successfully!", Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     public void callEcho(View view) {
         Intent intent = new Intent(this, UserProfileCreationEchoActivity.class);
@@ -161,6 +116,10 @@ public class UserProfileCreationActivity extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_profile_user);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     @Override

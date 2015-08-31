@@ -10,6 +10,7 @@
     <string name="introduction">Welcome to BFit!</string>
     <string name="hello_world">Hello world!</string>
     <string name="some_day">Some day!</string>
+    <string name="title_activity_user_profile_creation">Create Profile</string>
     <string name="title_activity_user_profile_creation_echo">UserProfileCreationEchoActivity
     </string>
     <string name="title_activity_home_page">Home</string>

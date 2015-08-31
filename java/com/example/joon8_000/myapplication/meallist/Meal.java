@@ -99,6 +99,30 @@ public class Meal {
     public int getFat() { return nutrients.totalFat; }
     public int getCalorie() {return nutrients.calorie; }
 
+    public int getBrkCount() {
+        return brkCount;
+    }
+
+    public int getLunchCount() {
+        return lunchCount;
+    }
+
+    public int getDinnerCount() {
+        return dinnerCount;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public String getMealName() {
+        return mealName;
+    }
+
+    public boolean isCanEat() {
+        return canEat;
+    }
+
     public void setCanEat(boolean canEat) { this.canEat= canEat; }
     public boolean getCanEat() { return this.canEat; }
     public Nutrients getNutrients() { return this.nutrients; }}

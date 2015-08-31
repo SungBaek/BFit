@@ -29,6 +29,7 @@ import java.util.Map;
 public class MealList {
 
     protected ArrayList<Meal> meals;
+
     public Nutrients totalNutrients;
 
     public String[] printTen(){
@@ -41,10 +42,12 @@ public class MealList {
 
     //get all objects and save it into the hash map.
     public MealList()    {
+
        //TODO:eventaully add a variable here for dining hall
        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
        this.totalNutrients = new Nutrients();
        this.meals = new ArrayList<>();
+
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
@@ -137,4 +140,5 @@ public class MealList {
     public Nutrients getTotalNutrients(){
         return this.totalNutrients;
     }
+
 }

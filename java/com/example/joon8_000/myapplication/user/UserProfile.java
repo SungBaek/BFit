@@ -61,19 +61,22 @@ public class UserProfile {
 
     //constructor
     public UserProfile(){
-       this.gender = UserProfile.MALE;
+        this.gender = UserProfile.MALE;
         this.age = 10;
         this.weight = 130;
         this.height = 20;
         this.firstName = "smith";
         this.lastName = "jake";
-        this.exercise = 1;
+        this.exercise = UserProfile.ACTIVE;
         this.goal = UserProfile.STAY;
         this.eatBreakfast = true;
         this.measurementSyst = UserProfile.IMPERIAL;
-        this.brkTarget = new Nutrients();
-        this.lunchTarget = new Nutrients();
-        this.dailyTarget = new Nutrients();
+        brkTarget = new Nutrients();
+        lunchTarget = new Nutrients();
+        dinnerTarget = new Nutrients();
+        dailyTarget = new Nutrients();
+        calcBMR();
+        calculateTarget();
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
@@ -87,9 +90,12 @@ public class UserProfile {
         this.goal = goal;
         this.eatBreakfast = eatBreakfast;
         this.measurementSyst = measurementSyst;
-        this.brkTarget = new Nutrients();
-        this.lunchTarget = new Nutrients();
-        this.dailyTarget = new Nutrients();
+
+        brkTarget = new Nutrients();
+        lunchTarget = new Nutrients();
+        dinnerTarget = new Nutrients();
+        dailyTarget = new Nutrients();
+
         calcBMR();
         calculateTarget();
 

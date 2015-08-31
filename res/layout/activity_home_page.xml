@@ -7,9 +7,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/tool_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"></include>
+        layout="@layout/tool_bar"></include>
 
     <LinearLayout
         android:orientation="horizontal"
