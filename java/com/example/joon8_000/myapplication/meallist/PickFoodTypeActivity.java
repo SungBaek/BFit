@@ -59,7 +59,7 @@ public class PickFoodTypeActivity extends AppCompatActivity {
         }
     }
     public void createMeal(){
-        ((BruinFit) getApplication()).setMealList(1); //1 is a dummy
+        //((BruinFit) getApplication()).setMealList();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
