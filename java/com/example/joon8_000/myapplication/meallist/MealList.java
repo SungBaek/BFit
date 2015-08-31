@@ -2,6 +2,7 @@ package com.example.joon8_000.myapplication.meallist;
 
 import android.util.Log;
 
+import com.example.joon8_000.myapplication.parser.Parser;
 import com.example.joon8_000.myapplication.user.UserProfile;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -69,25 +70,26 @@ public class MealList {
     //helper function for parsing parseobject
     public Meal objectParser(ParseObject e){
         Meal m;
+
         Nutrients nutrient = new Nutrients();
         //calorie
-        nutrient.calorie = Integer.parseInt(e.getString("calorie")); // data are stored as an array of size 1
+        nutrient.calorie = Parser.stringToInt(e.getString("calorie")); // data are stored as an array of size 1
         //totalfat
-        nutrient.totalFat = Double.parseDouble(e.getString("totFat"));
+        nutrient.totalFat = Parser.stringToDouble(e.getString("totFat"));
         //saturatedfat
-        nutrient.saturatedFat = Double.parseDouble(e.getString("satFat"));
+        nutrient.saturatedFat = Parser.stringToDouble(e.getString("satFat"));
         //transfat
-        nutrient.transFat = Double.parseDouble(e.getString("transFat"));
+        nutrient.transFat = Parser.stringToDouble(e.getString("transFat"));
         //cholesterol
-        nutrient.cholesterol = Double.parseDouble(e.getString("chol"));
+        nutrient.cholesterol = Parser.stringToDouble(e.getString("chol"));
         //sodium
-        nutrient.sodium = Double.parseDouble(e.getString("sod"));
+        nutrient.sodium = Parser.stringToDouble(e.getString("sod"));
         //fiber
-        nutrient.fiber = Double.parseDouble(e.getString("fiber"));
+        nutrient.fiber = Parser.stringToDouble(e.getString("fiber"));
         //protein.
-        nutrient.protein = Double.parseDouble(e.getString("protein"));
+        nutrient.protein = Parser.stringToDouble(e.getString("protein"));
         //sugar
-        nutrient.sugar = Double.parseDouble(e.getString("sugar"));
+        nutrient.sugar = Parser.stringToDouble(e.getString("sugar"));
         //name
         String name = e.getString("name");
 
