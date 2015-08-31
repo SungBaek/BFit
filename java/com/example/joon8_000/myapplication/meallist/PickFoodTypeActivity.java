@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joon8_000.myapplication.BruinFit;
@@ -64,19 +65,34 @@ public class PickFoodTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_food_type);
-
+        //tool bar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        //intialize variables
+        //intiations
         createMeal();
         testMealList();
+        TextView totalCalorie = (TextView) findViewById(R.id.totalCalorie);
+        TextView eatenCalorie = (TextView) findViewById(R.id.eatenCalorie);
+
+        int iEatenCalorie = ((BruinFit) getApplication()).getUser().getTarget(UserProfile.DAILY).calorie;
+        int iTotalCalorie = ((BruinFit) getApplication()).getMeal().getTotalNutrients().calorie;
+
+        totalCalorie.setText(String.valueOf(iTotalCalorie));
+        eatenCalorie.setText(String.valueOf(iEatenCalorie));
+
+
+        //listview intialization
         ArrayList<Meal> meals = ((BruinFit) getApplication()).getMeal().getMeals();
 
+        //custom adapter
         MealAdapter adapter = new MealAdapter(this, meals);
 
         ListView listView = (ListView)findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new OnItemClickListener(){
+            //when item is clicked do this.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -88,6 +104,16 @@ public class PickFoodTypeActivity extends AppCompatActivity {
                 m.eatThis(ml, UserProfile.DAILY);
                 ml.calcEateries(u, UserProfile.DAILY);
                 view.setBackgroundColor(Color.BLUE);
+
+                TextView totalCalorie = (TextView) findViewById(R.id.totalCalorie);
+                TextView eatenCalorie = (TextView) findViewById(R.id.eatenCalorie);
+
+                int iEatenCalorie = ((BruinFit) getApplication()).getUser().getTarget(UserProfile.DAILY).calorie;
+                int iTotalCalorie = ((BruinFit) getApplication()).getMeal().getTotalNutrients().calorie;
+
+                totalCalorie.setText(String.valueOf(iTotalCalorie));
+                eatenCalorie.setText(String.valueOf(iEatenCalorie));
+
             }
         });
       //  ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>

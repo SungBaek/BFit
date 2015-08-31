@@ -29,9 +29,7 @@ import java.util.Map;
 public class MealList {
 
     protected ArrayList<Meal> meals;
-
-    Nutrients totalNutrients;
-    //TODO: MAYBE HAVE TOTAL FAT AND CALORIE COUNTERS PRECALCULATED
+    public Nutrients totalNutrients;
 
     public String[] printTen(){
         String[] poo = new String[10];
@@ -45,7 +43,7 @@ public class MealList {
     public MealList()    {
        //TODO:eventaully add a variable here for dining hall
        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
-       totalNutrients = new Nutrients();
+       this.totalNutrients = new Nutrients();
        this.meals = new ArrayList<>();
        try {
            List<ParseObject> list  = query.find();
@@ -100,6 +98,9 @@ public class MealList {
     //separate for breakfast, lunch, dinner?
     public int calcEateries(UserProfile userProfile, int foodTime)
     {
+        int a = meals.get(0).getNutrients().calorie;
+        int b = this.totalNutrients.calorie;
+
         for(Meal chosenMeal : meals) {
             //go through every elements in meals then see if nutrientvalue + current >= maxallowed.
             if (chosenMeal.getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalNutrients.calorie
@@ -113,8 +114,7 @@ public class MealList {
         return 0; //so it compiles
     }
 
-    //returns null if it doesn't work
-    //TODO: return a dummy meal if it doesn't work??
+    //AUX FUNCTIONS
     public Meal getMeal(String s) {
         for (Meal e : this.meals){
             if (e.getName() == s){
@@ -133,5 +133,8 @@ public class MealList {
     }
     public void addFat(int fat){
         this.totalNutrients.totalFat += fat;
+    }
+    public Nutrients getTotalNutrients(){
+        return this.totalNutrients;
     }
 }

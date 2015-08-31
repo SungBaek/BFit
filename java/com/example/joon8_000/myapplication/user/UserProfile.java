@@ -71,7 +71,9 @@ public class UserProfile {
         this.goal = UserProfile.STAY;
         this.eatBreakfast = true;
         this.measurementSyst = UserProfile.IMPERIAL;
-
+        this.brkTarget = new Nutrients();
+        this.lunchTarget = new Nutrients();
+        this.dailyTarget = new Nutrients();
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
@@ -85,6 +87,9 @@ public class UserProfile {
         this.goal = goal;
         this.eatBreakfast = eatBreakfast;
         this.measurementSyst = measurementSyst;
+        this.brkTarget = new Nutrients();
+        this.lunchTarget = new Nutrients();
+        this.dailyTarget = new Nutrients();
         calcBMR();
         calculateTarget();
 

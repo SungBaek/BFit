@@ -1,6 +1,7 @@
 package com.example.joon8_000.myapplication.meallist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,6 @@ import com.example.joon8_000.myapplication.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by joon8_000 on 8/28/2015.
- */
 public class MealAdapter extends ArrayAdapter<Meal> {
     public MealAdapter(Context context, ArrayList<Meal> meals){
         super(context,0, meals);
@@ -27,7 +25,7 @@ public class MealAdapter extends ArrayAdapter<Meal> {
         }
         TextView mealName = (TextView) convertView.findViewById(R.id.mealName);
         mealName.setText(meal.getName());
-
+        convertView.setBackgroundColor(Color.YELLOW);
         return convertView;
     }
 
