@@ -9,9 +9,11 @@ import android.widget.TextView;
 import com.example.joon8_000.myapplication.BruinFit;
 import com.example.joon8_000.myapplication.R;
 
+import org.w3c.dom.Text;
+
 public class ViewUserProfile extends Activity {
 
-    TextView tv_name, tv_age, tv_gender, tv_weight, tv_height;
+    TextView tv_name, tv_age, tv_gender, tv_weight, tv_height, tv_exercise, tv_eatBreakfast, tv_goal, tv_measurementSyst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,46 @@ public class ViewUserProfile extends Activity {
         String weight = String.valueOf(tempUser.getWeight());
         String height = String.valueOf(tempUser.getHeight());
 
+        String exercise = "";
+        if (tempUser.getExercise() == UserProfile.SEDENTARY)
+            exercise = "Sedentary";
+        else if (tempUser.getExercise() == UserProfile.LIGHT)
+            exercise = "Light";
+        else if (tempUser.getExercise() == UserProfile.MODERATE)
+            exercise = "Moderate";
+        else if (tempUser.getExercise() == UserProfile.ACTIVE)
+            exercise = "Active";
+        else if (tempUser.getExercise() == UserProfile.EXTRA_ACTIVE)
+            exercise = "Very Active";
+        else
+            exercise = "Error";
+
+        String eatBreakfast = "";
+        if (tempUser.getEatBreakfast() == true)
+            eatBreakfast = "Yes";
+        else if (tempUser.getEatBreakfast() == false)
+            eatBreakfast = "No";
+        else
+            eatBreakfast = "Error";
+
+        String goal = "";
+        if (tempUser.getGoal() == UserProfile.LOSE)
+            goal = "Lose Weight";
+        else if (tempUser.getGoal() == UserProfile.STAY)
+            goal = "Maintain Current Weight";
+        else if (tempUser.getGoal() == UserProfile.GAIN)
+            goal = "Gain Weight";
+        else
+            goal = "Error";
+
+        String measurementSyst = "";
+        if (tempUser.getMeasurementSyst() == UserProfile.IMPERIAL)
+            measurementSyst = "Imperial";
+        else if (tempUser.getMeasurementSyst() == UserProfile.METRIC)
+            measurementSyst = "Metric";
+        else
+            measurementSyst = "Error";
+
         tv_name = (TextView) findViewById(R.id.user_name);
         tv_name.setText(userName);
 
@@ -41,8 +83,23 @@ public class ViewUserProfile extends Activity {
         tv_gender = (TextView) findViewById(R.id.user_gender);
         tv_gender.setText(gender);
 
+        tv_weight = (TextView) findViewById(R.id.user_weight);
+        tv_weight.setText(weight);
 
+        tv_height = (TextView) findViewById(R.id.user_height);
+        tv_height.setText(height);
 
+        tv_exercise = (TextView) findViewById(R.id.user_exercise);
+        tv_exercise.setText(exercise);
+
+        tv_eatBreakfast = (TextView) findViewById(R.id.user_eatBreakfast);
+        tv_eatBreakfast.setText(eatBreakfast);
+
+        tv_goal = (TextView) findViewById(R.id.user_goal);
+        tv_goal.setText(goal);
+
+        tv_measurementSyst = (TextView) findViewById(R.id.user_measurementSyst);
+        tv_measurementSyst.setText(measurementSyst);
 
     }
 
