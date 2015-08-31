@@ -10,11 +10,16 @@ android:stretchColumns="1">
         android:layout_column="1"
         android:text="Name"
         android:padding="3dip" />
+
     <TextView
         android:id="@+id/user_name"
         android:gravity="right"
         android:padding="3dip" />
 </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
 
 <TableRow>
     <TextView
@@ -26,6 +31,10 @@ android:stretchColumns="1">
         android:gravity="right"
         android:padding="3dip" />
 </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
 
 <TableRow>
     <TextView
@@ -53,6 +62,10 @@ android:stretchColumns="1">
             android:padding="3dip" />
     </TableRow>
 
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
     <TableRow>
         <TextView
             android:layout_column="1"
@@ -64,14 +77,68 @@ android:stretchColumns="1">
             android:padding="3dip" />
     </TableRow>
 
-<View
-    android:layout_height="2dip"
-    android:background="#FF909090" />
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
 
-<TableRow>
-    <TextView
-        android:layout_column="1"
-        android:text="Quit"
-        android:padding="3dip" />
-</TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Lifestyle"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/user_exercise"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Goal"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/user_goal"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Do you Eat Breakfast?"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/user_eatBreakfast"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Measurement System"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/user_measurementSyst"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
 </TableLayout>
