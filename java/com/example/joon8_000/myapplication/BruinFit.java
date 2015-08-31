@@ -41,9 +41,8 @@ public class BruinFit extends Application {
     public void setUser(UserProfile user){
         this.user = user;
     }
-    public void setMealList(int time) {
-        //int might eventually be used depends
-        this.mealList = new MealList();
+    public void setMealList(/*int time,*/ MealList ml) {
+        this.mealList = ml;
 
     }
 
@@ -61,6 +60,7 @@ public class BruinFit extends Application {
         testObject.saveInBackground();
 
         loadProfile();
+        loadMealList();
 
         startUser(user);
         startMealList(mealList);
@@ -182,7 +182,7 @@ public class BruinFit extends Application {
         MealList ml = new MealList();
         loadNutrients(ml.getTotalNutrients(), "mlTotalNutrients", sharedPreferences);
         loadMeals(ml.getMeals(), sharedPreferences);
-
+        setMealList(ml);
     }
 
     public void loadNutrients(Nutrients n, String whichNutrients, SharedPreferences sp)
@@ -206,19 +206,19 @@ public class BruinFit extends Application {
 
     public void loadMeals(ArrayList<Meal> m, SharedPreferences sp)
     {
-        SharedPreferences.Editor editor = sp.edit();
         int size = sp.getInt("mList_size", 0);
 
-        for (int i = size; i > 0; i--)
+        for (int i = 0; i < size; i++)
         {
+            Nutrients tempNut = new Nutrients();
+            Meal tempMeal = new Meal("temp", tempNut);
+            m.add(i, tempMeal);
             m.get(i).setTotalCount(sp.getInt("mList_" + i + "_totalCount", 0));
-            editor.putString("mList_" + i + "_mealName", m.get(i).getMealName());
-            editor.putBoolean("mList_"+i+"_canEat", m.get(i).getCanEat());
-            editor.apply();
+            m.get(i).setMealName(sp.getString("mList_" + i + "_mealName", ""));
+            m.get(i).setCanEat(sp.getBoolean("mList_" + i + "_canEat", true));
 
-            saveNutrients(m.get(i).getNutrients(), "mList_"+i+"_meal_nut", sp);
+            loadNutrients(m.get(i).getNutrients(), "mList_" + i + "_meal_nut", sp);
         }
-        editor.apply();
 
     }
 

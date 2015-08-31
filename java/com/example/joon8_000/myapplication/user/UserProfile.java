@@ -78,7 +78,8 @@ public class UserProfile {
         brkTarget = new Nutrients();
         lunchTarget = new Nutrients();
         dinnerTarget = new Nutrients();
-        dailyTarget = new Nutrients();
+        dailyTarget =  new Nutrients();
+
     }
 
     public UserProfile(int gender, int age, int weight, int height, String firstName, String lastName, int exercise, int goal, boolean eatBreakfast, int measurementSyst){
@@ -96,6 +97,11 @@ public class UserProfile {
         lunchTarget = new Nutrients();
         dinnerTarget = new Nutrients();
         dailyTarget = new Nutrients();
+
+        brkTarget = new Nutrients();
+        lunchTarget = new Nutrients();
+        dinnerTarget = new Nutrients();
+        dailyTarget =  new Nutrients();
 
     }
 
