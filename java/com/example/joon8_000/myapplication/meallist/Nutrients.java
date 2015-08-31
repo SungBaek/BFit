@@ -5,15 +5,15 @@ package com.example.joon8_000.myapplication.meallist;
  */
 public class Nutrients {
     public int calorie;
-    public int totalFat;
-    public int saturatedFat;
-    public int transFat;
-    public int cholesterol;     // mg
-    public int sodium;          // mg
-    public int carbs;
-    public int fiber;
-    public int protein;
-    public int sugar;
+    public double totalFat;
+    public double saturatedFat;
+    public double transFat;
+    public double cholesterol;     // mg
+    public double sodium;          // mg
+    public double carbs;
+    public double fiber;
+    public double protein;
+    public double sugar;
     // vitamins are not dependent on caloric intake, shoot for 100% on Nutrition Facts
     //vita, iron, calcium not avaiable on the mobile version.
     public int vitA;

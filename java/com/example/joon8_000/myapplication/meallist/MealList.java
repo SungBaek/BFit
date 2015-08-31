@@ -42,12 +42,10 @@ public class MealList {
 
     //get all objects and save it into the hash map.
     public MealList()    {
-
        //TODO:eventaully add a variable here for dining hall
        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
        this.totalNutrients = new Nutrients();
        this.meals = new ArrayList<>();
-
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
@@ -58,7 +56,6 @@ public class MealList {
        catch (ParseException e) { //failed to retrieve with given query
             Log.e("meallist", "Failed to find any objects");
        }
-
     }
 
     //helper function for calculating total
@@ -74,23 +71,23 @@ public class MealList {
         Meal m;
         Nutrients nutrient = new Nutrients();
         //calorie
-        nutrient.calorie = e.getInt("calorie"); // data are stored as an array of size 1
+        nutrient.calorie = Integer.parseInt(e.getString("calorie")); // data are stored as an array of size 1
         //totalfat
-        nutrient.totalFat = e.getInt("totFat");
+        nutrient.totalFat = Double.parseDouble(e.getString("totFat"));
         //saturatedfat
-        nutrient.saturatedFat = e.getInt("satFat");
+        nutrient.saturatedFat = Double.parseDouble(e.getString("satFat"));
         //transfat
-        nutrient.transFat = e.getInt("transFat");
+        nutrient.transFat = Double.parseDouble(e.getString("transFat"));
         //cholesterol
-        nutrient.cholesterol = e.getInt("chol");
+        nutrient.cholesterol = Double.parseDouble(e.getString("chol"));
         //sodium
-        nutrient.sodium = e.getInt("sod");
+        nutrient.sodium = Double.parseDouble(e.getString("sod"));
         //fiber
-        nutrient.fiber = e.getInt("fiber");
+        nutrient.fiber = Double.parseDouble(e.getString("fiber"));
         //protein.
-        nutrient.protein = e.getInt("protein");
+        nutrient.protein = Double.parseDouble(e.getString("protein"));
         //sugar
-        nutrient.sugar = e.getInt("sugar");
+        nutrient.sugar = Double.parseDouble(e.getString("sugar"));
         //name
         String name = e.getString("name");
 
@@ -134,7 +131,7 @@ public class MealList {
     public void addCalorie(int calorie){
         this.totalNutrients.calorie += calorie;
     }
-    public void addFat(int fat){
+    public void addFat(double fat){
         this.totalNutrients.totalFat += fat;
     }
     public Nutrients getTotalNutrients(){
