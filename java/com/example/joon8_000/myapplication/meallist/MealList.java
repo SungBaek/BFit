@@ -1,6 +1,7 @@
 package com.example.joon8_000.myapplication.meallist;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.joon8_000.myapplication.parser.Parser;
 import com.example.joon8_000.myapplication.user.UserProfile;
@@ -12,6 +13,8 @@ import com.parse.ParseQuery;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,10 +46,10 @@ public class MealList {
 
     //get all objects and save it into the hash map.
     public MealList()    {
-       //TODO:eventaully add a variable here for dining hall
+        /*
        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
-       this.totalNutrients = new Nutrients();
-       this.meals = new ArrayList<>();
+       this.totalNutrients = new Nutrients();*/
+       this.meals = new ArrayList<>();/*
        try {
            List<ParseObject> list  = query.find();
            //for each list go through it and put it in the hash map.
@@ -56,7 +59,49 @@ public class MealList {
        }
        catch (ParseException e) { //failed to retrieve with given query
             Log.e("meallist", "Failed to find any objects");
-       }
+       }*/
+        this.totalNutrients = new Nutrients();
+    }
+
+    public String getTimeString(int time){
+        if (time == UserProfile.BREAKFAST){
+            return "breakfast";
+        }
+        else if(time == UserProfile.LUNCH){
+            return "lunch";
+        }
+        else if(time == UserProfile.DINNER){
+            return "dinner";
+        }
+        else //error
+            return "lunch"; //by default
+    }
+
+    public void pullDatabase(String dininghall, int time){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Nutrients");
+        query.whereEqualTo("diningHall", dininghall);
+        query.whereEqualTo("time", getTimeString(time));
+        query.setLimit(500);
+        this.meals = new ArrayList<>();
+        try{
+            List<ParseObject> list = query.find();
+            for (ParseObject e : list){
+                meals.add(objectParser(e));
+            }
+        }
+        catch(ParseException e) {
+            Log.e("meallist", "failed");
+        }
+        //sort according to calorie
+        Collections.sort(this.meals, new Comparator<Meal>() {
+            @Override
+            public int compare(Meal lhs, Meal rhs) {
+                if (lhs.getCalorie() > rhs.getCalorie())
+                    return -1;
+                else
+                    return 1;
+            }
+        });
     }
 
     //helper function for calculating total
@@ -100,9 +145,6 @@ public class MealList {
     //separate for breakfast, lunch, dinner?
     public int calcEateries(UserProfile userProfile, int foodTime)
     {
-        int a = meals.get(0).getNutrients().calorie;
-        int b = this.totalNutrients.calorie;
-
         for(Meal chosenMeal : meals) {
             //go through every elements in meals then see if nutrientvalue + current >= maxallowed.
             if (chosenMeal.getNutrients().calorie > userProfile.getTarget(foodTime).calorie - this.totalNutrients.calorie
